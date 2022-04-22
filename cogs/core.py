@@ -31,11 +31,6 @@ class Core(commands.Cog):
         await ctx.send(f"Pong! t={(datetime.datetime.now() - ctx.message.created_at).total_seconds() * 1000}ms")
 
     @commands.command()
-    @commands.has_role(ids.roles["Mod"])
-    async def getdata(self, ctx):
-        await ctx.send("Working!", file=discord.File("data/memberdata.json"))
-
-    @commands.command()
     @commands.is_owner()
     async def migrate_econ(self, ctx):
         r = open("econ.txt", "r")
@@ -108,6 +103,24 @@ class Core(commands.Cog):
         for member in members:
             await member.move_to(currentChannel)
         await ctx.send(f"Moved *{len(members)}* members from {targetChannel.mention} to {currentChannel.mention}.")
+        
+    @commands.command(name="getname", brief="Gets the target user's nickname.")
+    async def get_name(self, ctx, *target: discord.Member):
+        if target == ():
+            member = Member.get(ctx.author.id)
+        else:
+            member = Member.get(target[0].id)
+        nick = member.get_nickname()
+        await ctx.send(f"Nickname is set to: {nick}")
+                           
+    @commands.command(name="setname", brief="Sets the target user's nickname.")
+    async def set_name(self, ctx, nick, *target: discord.Member):
+        if target == ():
+            member = Member.get(ctx.author.id)
+        else:
+            member = Member.get(target[0].id)
+        member.set_nickname(nick)
+        await ctx.send(f"Nickname has been set to: {nick}")
 
     @commands.command()
     async def countdown(self, ctx):
