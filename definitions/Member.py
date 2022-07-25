@@ -1,4 +1,4 @@
-from definitions import SharkErrors, Item
+from definitions import SharkErrors, Item, Effect
 from handlers import databaseHandler
 import json
 
