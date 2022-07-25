@@ -2,7 +2,7 @@ import discord
 import random
 import datetime
 from discord.ext import tasks, commands
-from definitions import Member, Item
+from definitions import Member, Item, Effect
 from handlers import databaseHandler
 
 import secret
@@ -205,7 +205,10 @@ class Count(commands.Cog):
                     
                 if countCorrect == True:
                     member = Member.get(message.author.id)
-                    member.add_balance(1)
+                    if member.check_for_effect(Effect.get(0)):
+                        member.add_balance(3)
+                    else:
+                        member.add_balance(1)
                     member.add_counts(1)
 
                     ##--Counting Boxes--##
