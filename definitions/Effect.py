@@ -68,9 +68,8 @@ effects = [
 ]
 
 
-def get(effectid):
-    effectid = int(effectid)
+def get(search):
     for effect in effects:
-        if effect.id == effectid:
+        if effect.id == int(search) or effect.name == search:
             return effect
-    raise SharkErrors.EffectNotFoundError(effectid)
+    raise SharkErrors.EffectNotFoundError(search)
