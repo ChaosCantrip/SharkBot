@@ -1,6 +1,6 @@
 import discord
 from discord.ext import tasks, commands
-from definitions import Member, Effect
+from definitions import Member, Effect, SharkErrors
 from datetime import timedelta
 
 import secret
@@ -35,6 +35,17 @@ class Effects(commands.Cog):
             duration = timedelta(seconds=rawduration)
         member.apply_effect(effect, duration)
         await ctx.send(f"Applied **{effect.name}** to *{discordMember.display_name}*")
+
+    @commands.command()
+    @commands.has_role(ids.roles["Mod"])
+    async def removeeffect(self, ctx, targetMember: discord.Member, effectid: int):
+        member = Member.get(targetMember.id)
+        effect = Effect.get(effectid)
+        try:
+            member.remove_effect(effect)
+            await ctx.send(f"Removed **{effect.name}** effect from *{targetMember.display_name}*")
+        except SharkErrors.EffectNotAppliedError:
+            await ctx.send(f"*{targetMember.display_name}* doesn't have **{effect.name}** applied!")
 
 
 
