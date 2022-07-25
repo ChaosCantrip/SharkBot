@@ -53,7 +53,10 @@ class NewEffect(AppliedEffect):
 
     def __init__(self, effectid, duration):
         self.id = effectid
-        self.expiry = datetime.now() + duration
+        if duration is None:
+            self.expiry = None
+        else:
+            self.expiry = datetime.now() + duration
 
 
 effects = [
