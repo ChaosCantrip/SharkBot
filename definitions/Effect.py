@@ -11,8 +11,12 @@ class Effect:
 
 class AppliedEffect:
 
-    def __init__(self, effectid: int):
+    def __init__(self, effectid: int, expiry):
         self.id = effectid
+        if expiry is None:
+            self.expiry = None
+        else:
+            self.expiry = datetime.strptime(expiry, "%S:%M:%H/%d:%m:%Y")
 
 
 effects = [
