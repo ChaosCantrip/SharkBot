@@ -55,7 +55,7 @@ class AppliedEffect:
 class NewEffect(AppliedEffect):
 
     def __init__(self, effectid, duration):
-        self.id = effectid
+        self.effect = get(effectid)
         if duration is None:
             self.expiry = None
         else:
