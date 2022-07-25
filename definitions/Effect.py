@@ -1,4 +1,5 @@
 from datetime import timedelta, datetime
+from definitions import SharkErrors
 
 timeFormat = "%S:%M:%H/%d:%m:%Y"
 
