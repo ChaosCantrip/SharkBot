@@ -43,9 +43,12 @@ class AppliedEffect:
 
     def convert_to_dict(self):
         data = {
-            "id": self.id,
-            "expiry": datetime.strftime(self.expiry, timeFormat)
+            "id": self.id
         }
+        if self.expiry is None:
+            data["expiry"] = None
+        else:
+            data["expiry"] = datetime.strftime(self.expiry, timeFormat)
         return data
 
 
