@@ -1,0 +1,1 @@
+CON1|Money Bag|For the next 24 hours, counts are worth $3 instead of $1.|consumables|150|0:86400
