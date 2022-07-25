@@ -65,6 +65,8 @@ class ConsumableItem(Item):
             self.effectduration = timedelta(seconds=int(self.function[1]))
         self.sellable = False
 
+        self.collection.add_item(self)
+
 
 class FakeItem(Item):
 
