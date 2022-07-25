@@ -10,6 +10,7 @@ class Item():
         self.description = itemData[2]
         self.collection = Collection.get(itemData[3])
         self.rarity = Rarity.get(itemData[3])
+        self.sellable = True
 
         self.collection.add_item(self)
 
@@ -36,6 +37,7 @@ class Lootbox(Item):
         self.rarity = Rarity.get(itemData[3])
         self.value = int(itemData[4])
         self.lootPool = LootPool.LootPool(itemData[5])
+        self.sellable = False
 
         self.collection.add_item(self)
 
