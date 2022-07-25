@@ -26,6 +26,9 @@ class Member():
         member_data["collection"] = self.collection
         member_data["email"] = self.linked_account
         member_data["counts"] = self.counts
+        member_data["effects"] = []
+        for effect in self.effects:
+            member_data["effects"].append(effect.convert_to_dict())
 
         update_json_file(self.id, member_data)
 
