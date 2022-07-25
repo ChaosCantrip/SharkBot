@@ -143,6 +143,11 @@ class Member():
         self.counts = amount
         self.write_data()
 
+    ##--Effects--##
+
+    def get_effects(self):
+        return self.effects
+
     ##--Destructor--##
 
     def __del__(self):
