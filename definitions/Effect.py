@@ -9,6 +9,12 @@ class Effect:
         self.duration = duration
 
 
+class AppliedEffect:
+
+    def __init__(self):
+        pass
+
+
 effects = [
     Effect(0, "Money Bag", timedelta(days=1))
 ]
