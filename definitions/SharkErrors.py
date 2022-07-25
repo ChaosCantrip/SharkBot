@@ -34,3 +34,6 @@ class EffectNotFoundError(SharkError):
 
 class EffectAlreadyAppliedError(SharkError):
     pass
+
+class EffectNotAppliedError(SharkError):
+    pass
