@@ -149,6 +149,7 @@ class Member():
     ##--Effects--##
 
     def get_effects(self):
+        self.remove_expired_effects()
         return self.effects
 
     def apply_effect(self, effect, duration):
