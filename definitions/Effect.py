@@ -5,10 +5,9 @@ timeFormat = "%S:%M:%H/%d:%m:%Y"
 
 class Effect:
 
-    def __init__(self, effectid: int, name: str, duration: timedelta):
+    def __init__(self, effectid: int, name: str):
         self.id = effectid
         self.name = name
-        self.duration = duration
 
 
 class AppliedEffect:
@@ -32,5 +31,5 @@ class AppliedEffect:
 
 
 effects = [
-    Effect(0, "Money Bag", timedelta(days=1))
+    Effect(0, "Money Bag")
 ]
