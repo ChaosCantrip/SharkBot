@@ -16,8 +16,10 @@ class Member():
         self.discordMember = None
 
         self.effects = []
-        for effect in member_data["effects"]:
-            self.effects.append(Effect.AppliedEffect(effect))
+        for effectdata in member_data["effects"]:
+            effect = Effect.AppliedEffect(effectdata)
+            if not effect.check_expired():
+                self.effects.append(Effect.AppliedEffect(effect))
 
     def write_data(self):
         member_data = {}
