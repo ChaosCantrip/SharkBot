@@ -175,14 +175,10 @@ class Member():
         self.write_data()
 
     def check_for_effect(self, effect):
+        self.remove_expired_effects()
         for appliedeffect in self.effects:
             if appliedeffect.effect == effect:
-                if appliedeffect.check_expired():
-                    self.effects.remove(appliedeffect)
-                    self.write_data()
-                    return False
-                else:
-                    return True
+                return True
         return False
 
 
