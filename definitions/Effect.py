@@ -13,12 +13,12 @@ class Effect:
 
 class AppliedEffect:
 
-    def __init__(self, effectid: int, expiry):
-        self.id = effectid
-        if expiry is None:
+    def __init__(self, effectdata):
+        self.id = effectdata["id"]
+        if effectdata["expiry"] is None:
             self.expiry = None
         else:
-            self.expiry = datetime.strptime(expiry, timeFormat)
+            self.expiry = datetime.strptime(effectdata["expiry"], timeFormat)
 
     def extend(self, duration):
         self.expiry = self.expiry + duration
