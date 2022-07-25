@@ -23,6 +23,9 @@ class AppliedEffect:
     def extend(self, duration):
         self.expiry = self.expiry + duration
 
+    def set_expiry(self, expiry):
+        self.expiry = expiry
+
     def check_expired(self):
         dtnow = datetime.now()
         if self.expiry is None:
