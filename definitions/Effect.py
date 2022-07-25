@@ -35,6 +35,12 @@ class AppliedEffect:
         else:
             return True
 
+    def get_expiry_text(self):
+        if self.expiry is None:
+            return "No Expiry"
+        else:
+            return datetime.strftime(self.expiry, timeFormat)
+
     def convert_to_dict(self):
         data = {
             "id": self.id,
