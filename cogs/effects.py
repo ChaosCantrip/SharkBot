@@ -1,6 +1,7 @@
 import discord
 from discord.ext import tasks, commands
-from definitions import Member
+from definitions import Member, Effect
+from datetime import timedelta
 
 import secret
 
@@ -22,6 +23,18 @@ class Effects(commands.Cog):
             await ctx.send("You have no effects applied!")
         for effect in member.get_effects():
             await ctx.send(f"ID: {effect.effect.id}, Name: {effect.effect.name}, Expiry: {effect.get_expiry_text()}")
+
+    @commands.command()
+    @commands.has_role(ids.roles["Mod"])
+    async def addeffect(self, ctx, discordMember: discord.Member, effectid, rawduration):
+        member = Member.get(discordMember.id)
+        effect = Effect.get(effectid)
+        if rawduration == "None":
+            duration = None
+        else:
+            duration = timedelta(seconds=int(rawduration))
+        member.apply_effect(effect, duration)
+        await ctx.send(f"Applied **{effect.name}** to *{discordMember.display_name}*")
 
 
 
