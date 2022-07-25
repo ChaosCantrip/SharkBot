@@ -159,6 +159,7 @@ class BlankMember(Member):
         self.collection = defaultvalues["collection"]
         self.linked_account = defaultvalues["email"]
         self.counts = defaultvalues["counts"]
+        self.effects = defaultvalues["effects"]
 
 
 def get(member_id):
