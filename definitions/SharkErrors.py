@@ -31,3 +31,6 @@ class ItemNotFoundError(SharkError):
 
 class EffectNotFoundError(SharkError):
     pass
+
+class EffectAlreadyAppliedError(SharkError):
+    pass
