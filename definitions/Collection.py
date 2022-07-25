@@ -49,6 +49,7 @@ collections = [
     exotic,
     mythic,
     lootboxes,
+    consumables,
     valentines,
     witch_queen,
     easter,
