@@ -29,7 +29,7 @@ class Effects(commands.Cog):
     async def addeffect(self, ctx, discordMember: discord.Member, effectid: int, rawduration: int):
         member = Member.get(discordMember.id)
         effect = Effect.get(effectid)
-        if rawduration == "None":
+        if rawduration == 0:
             duration = None
         else:
             duration = timedelta(seconds=rawduration)
