@@ -69,6 +69,7 @@ effects = [
 
 
 def get(effectid):
+    effectid = int(effectid)
     for effect in effects:
         if effect.id == effectid:
             return effect
