@@ -166,6 +166,17 @@ class Member():
         self.effects.append(Effect.NewEffect(effect.id, duration))
         self.write_data()
 
+    def check_for_effect(self, effect):
+        for appliedeffect in self.effects:
+            if appliedeffect.effect == effect:
+                if appliedeffect.check_expired():
+                    self.effects.remove(appliedeffect)
+                    self.write_data()
+                    return False
+                else:
+                    return True
+        return False
+
 
     ##--Destructor--##
 
