@@ -443,7 +443,7 @@ class Collectibles(commands.Cog):
             itemList = []
             for itemid in member.inventory:
                 item = Item.get(itemid)
-                if item.id[:-1] == "LOOT":
+                if not item.sellable:
                     continue
                 itemList.append(item)
             for item in itemList:
