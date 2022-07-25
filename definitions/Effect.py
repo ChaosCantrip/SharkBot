@@ -73,6 +73,7 @@ def get(search):
         if effect.name == search:
             return effect
     search = int(search)
-    if effect.id == search:
-        return effect
+    for effect in effects:
+        if effect.id == search:
+            return effect
     raise SharkErrors.EffectNotFoundError(search)
