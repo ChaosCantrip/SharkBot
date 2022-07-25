@@ -14,6 +14,10 @@ class Member():
         self.counts = member_data["counts"]
         self.discordMember = None
 
+        self.effects = []
+        for effect in member_data["effects"]:
+            self.effects.append(Effect.AppliedEffect(effect))
+
     def write_data(self):
         member_data = {}
         member_data["id"] = self.id
