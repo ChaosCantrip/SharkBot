@@ -1,5 +1,6 @@
-from definitions import SharkErrors, Item
+from definitions import SharkErrors, Item, Effect
 from handlers import databaseHandler
+from datetime import datetime
 import json
 
 class Member():
@@ -14,6 +15,12 @@ class Member():
         self.counts = member_data["counts"]
         self.discordMember = None
 
+        self.effects = []
+        for effectdata in member_data["effects"]:
+            effect = Effect.AppliedEffect(effectdata)
+            if not effect.check_expired():
+                self.effects.append(effect)
+
     def write_data(self):
         member_data = {}
         member_data["id"] = self.id
@@ -22,6 +29,9 @@ class Member():
         member_data["collection"] = self.collection
         member_data["email"] = self.linked_account
         member_data["counts"] = self.counts
+        member_data["effects"] = []
+        for effect in self.effects:
+            member_data["effects"].append(effect.convert_to_dict())
 
         update_json_file(self.id, member_data)
 
@@ -136,6 +146,51 @@ class Member():
         self.counts = amount
         self.write_data()
 
+    ##--Effects--##
+
+    def get_effects(self):
+        self.remove_expired_effects()
+        return self.effects
+
+    def apply_effect(self, effect, duration):
+        for appliedeffect in self.effects:
+            if appliedeffect.effect == effect:
+                if appliedeffect.expiry is None:
+                    raise SharkErrors.EffectAlreadyAppliedError(self.id, appliedeffect.effect.name)
+                    return
+                elif appliedeffect.check_expired():
+                    appliedeffect.set_expiry(datetime.now() + duration)
+                    self.write_data()
+                    return
+                else:
+                    appliedeffect.extend(duration)
+                    self.write_data()
+                    return
+        self.effects.append(Effect.NewEffect(effect.id, duration))
+        self.write_data()
+
+    def remove_effect(self, effect):
+        for appliedeffect in self.effects:
+            if appliedeffect.effect == effect:
+                self.effects.remove(appliedeffect)
+                self.write_data()
+                return
+        raise SharkErrors.EffectNotAppliedError(self.id, effect.id, effect.name)
+
+    def remove_expired_effects(self):
+        for effect in self.effects:
+            if effect.check_expired():
+                self.effects.remove(effect)
+        self.write_data()
+
+    def check_for_effect(self, effect):
+        self.remove_expired_effects()
+        for appliedeffect in self.effects:
+            if appliedeffect.effect == effect:
+                return True
+        return False
+
+
     ##--Destructor--##
 
     def __del__(self):
@@ -152,6 +207,7 @@ class BlankMember(Member):
         self.collection = defaultvalues["collection"]
         self.linked_account = defaultvalues["email"]
         self.counts = defaultvalues["counts"]
+        self.effects = defaultvalues["effects"]
 
 
 def get(member_id):
@@ -216,7 +272,8 @@ defaultvalues = {
     "inventory" : [],
     "collection" : [],
     "email" : None,
-    "counts" : 0
+    "counts" : 0,
+    "effects" : []
     }
 
 

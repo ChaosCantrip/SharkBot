@@ -28,3 +28,12 @@ class RarityNotFoundError(SharkError):
 
 class ItemNotFoundError(SharkError):
     pass
+
+class EffectNotFoundError(SharkError):
+    pass
+
+class EffectAlreadyAppliedError(SharkError):
+    pass
+
+class EffectNotAppliedError(SharkError):
+    pass
