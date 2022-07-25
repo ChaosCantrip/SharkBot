@@ -21,6 +21,13 @@ class AppliedEffect:
     def extend(self, duration):
         self.expiry = self.expiry + duration
 
+    def convert_to_dict(self):
+        data = {
+            "id": self.id,
+            "expiry": datetime.strftime(self.expiry, "%S:%M:%H/%d:%m:%Y")
+        }
+        return data
+
 
 effects = [
     Effect(0, "Money Bag", timedelta(days=1))
