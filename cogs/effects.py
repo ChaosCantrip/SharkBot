@@ -26,13 +26,13 @@ class Effects(commands.Cog):
 
     @commands.command()
     @commands.has_role(ids.roles["Mod"])
-    async def addeffect(self, ctx, discordMember: discord.Member, effectid, rawduration):
+    async def addeffect(self, ctx, discordMember: discord.Member, effectid: int, rawduration: int):
         member = Member.get(discordMember.id)
         effect = Effect.get(effectid)
         if rawduration == "None":
             duration = None
         else:
-            duration = timedelta(seconds=int(rawduration))
+            duration = timedelta(seconds=rawduration)
         member.apply_effect(effect, duration)
         await ctx.send(f"Applied **{effect.name}** to *{discordMember.display_name}*")
 
