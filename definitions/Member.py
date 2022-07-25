@@ -169,6 +169,14 @@ class Member():
         self.effects.append(Effect.NewEffect(effect.id, duration))
         self.write_data()
 
+    def remove_effect(self, effect):
+        for appliedeffect in self.effects:
+            if appliedeffect.effect == effect:
+                self.effects.remove(appliedeffect)
+                self.write_data()
+                return
+        raise SharkErrors.EffectNotAppliedError(self.id, effect.id, effect.name)
+
     def remove_expired_effects(self):
         for effect in self.effects:
             if effect.check_expired():
