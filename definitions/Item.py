@@ -113,6 +113,7 @@ import_item_file("exotic.txt", Item)
 import_item_file("mythic.txt", Item)
 
 import_item_file("lootboxes.txt", Lootbox)
+import_item_file("consumables.txt", ConsumableItem)
 
 import_item_file("valentines.txt", Item)
 import_item_file("witch_queen.txt", Item)
