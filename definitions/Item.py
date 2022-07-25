@@ -1,5 +1,6 @@
 import discord
-from definitions import Collection, Rarity, SharkErrors, LootPool
+from definitions import Collection, Rarity, SharkErrors, LootPool, Effect
+from datetime import timedelta
 
 class Item():
     
@@ -26,6 +27,7 @@ class Item():
     def get_value(self):
         return self.rarity.value
 
+
 class Lootbox(Item):
     
     def __init__(self, itemDataString):
@@ -43,6 +45,26 @@ class Lootbox(Item):
 
     def roll(self):
         return self.lootPool.roll()
+
+
+class ConsumableItem(Item):
+
+    def __init__(self, itemDataString):
+        itemData = itemDataString.split("|")
+        self.id = itemData[0]
+        self.name = itemData[1]
+        self.description = itemData[2]
+        self.collection = Collection.consumables
+        self.rarity = Rarity.get(itemData[3])
+        self.value = int(itemData[4])
+        self.function = itemData[5].split(":")
+        self.effect = Effect.get(self.function[0])
+        if self.function[1] == "P":
+            self.effectduration = None
+        else:
+            self.effectduration = timedelta(seconds=int(self.function[1]))
+        self.sellable = False
+
 
 class FakeItem(Item):
 
