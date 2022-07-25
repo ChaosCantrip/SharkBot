@@ -22,13 +22,14 @@ exotic = Rarity("Exotic", 150, "exotic_item")
 mythic = Rarity("Mythic", 500, "mythic_item")
 
 lootboxes = Rarity("Lootboxes", 100, "lootboxes_item")
+consumables = Rarity("Consumable Item", 100, "consumable_item")
 
 valentines = Rarity("Valentines", 10, "valentines_item")
 witch_queen = Rarity("Witch Queen", 10, "witch_queen_item")
 easter = Rarity("Easter", 10, "easter_item")
 summer = Rarity("Summer", 10, "summer_item")
 
-rarities = [common, uncommon, rare, legendary, exotic, lootboxes, mythic, valentines, witch_queen, easter, summer]
+rarities = [common, uncommon, rare, legendary, exotic, mythic, lootboxes, consumables, valentines, witch_queen, easter, summer]
 
 def get(search: str):
     search = search.upper()
