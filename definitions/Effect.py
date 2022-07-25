@@ -9,4 +9,6 @@ class Effect:
         self.duration = duration
 
 
-effects = []
+effects = [
+    Effect(0, "Money Bag", timedelta(days=1))
+]
