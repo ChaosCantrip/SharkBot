@@ -14,7 +14,7 @@ class Effect:
 class AppliedEffect:
 
     def __init__(self, effectdata):
-        self.id = effectdata["id"]
+        self.effect = get(effectdata["id"])
         if effectdata["expiry"] is None:
             self.expiry = None
         else:
