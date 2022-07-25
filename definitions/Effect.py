@@ -11,8 +11,8 @@ class Effect:
 
 class AppliedEffect:
 
-    def __init__(self):
-        pass
+    def __init__(self, effectid: int):
+        self.id = effectid
 
 
 effects = [
