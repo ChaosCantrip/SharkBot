@@ -63,7 +63,7 @@ class NewEffect(AppliedEffect):
 
 
 effects = [
-    Effect(0, "Money Bag"),
+    Effect(0, "Money Bags"),
     Effect(1, "Counting Charm")
 ]
 
