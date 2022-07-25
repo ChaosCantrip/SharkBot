@@ -23,6 +23,15 @@ class AppliedEffect:
     def extend(self, duration):
         self.expiry = self.expiry + duration
 
+    def check_expired(self):
+        dtnow = datetime.now()
+        if self.expiry is None:
+            return False
+        elif self.expiry > dtnow:
+            return False
+        else:
+            return True
+
     def convert_to_dict(self):
         data = {
             "id": self.id,
