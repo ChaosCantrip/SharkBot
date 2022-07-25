@@ -149,6 +149,23 @@ class Member():
     def get_effects(self):
         return self.effects
 
+    def apply_effect(self, effect, duration):
+        for appliedeffect in self.effects:
+            if effect == appliedeffect:
+                if appliedeffect.expiry is None:
+                    raise SharkErrors.EffectAlreadyAppliedError(self.id, appliedeffect.effect.name)
+                    return
+                elif appliedeffect.check_expired():
+                    appliedeffect.set_expiry(datetime.now() + duration)
+                    self.write_data()
+                    return
+                else:
+                    appliedeffect.extend(duration)
+                    self.write_data()
+                    return
+        self.effects.append(Effect.NewEffect(effect.id, duration))
+        self.write_data()
+
 
     ##--Destructor--##
 
