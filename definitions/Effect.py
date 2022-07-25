@@ -1,5 +1,7 @@
 from datetime import timedelta, datetime
 
+timeFormat = "%S:%M:%H/%d:%m:%Y"
+
 
 class Effect:
 
@@ -16,7 +18,7 @@ class AppliedEffect:
         if expiry is None:
             self.expiry = None
         else:
-            self.expiry = datetime.strptime(expiry, "%S:%M:%H/%d:%m:%Y")
+            self.expiry = datetime.strptime(expiry, timeFormat)
 
     def extend(self, duration):
         self.expiry = self.expiry + duration
@@ -24,7 +26,7 @@ class AppliedEffect:
     def convert_to_dict(self):
         data = {
             "id": self.id,
-            "expiry": datetime.strftime(self.expiry, "%S:%M:%H/%d:%m:%Y")
+            "expiry": datetime.strftime(self.expiry, timeFormat)
         }
         return data
 
