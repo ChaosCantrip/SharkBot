@@ -70,6 +70,9 @@ effects = [
 
 def get(search):
     for effect in effects:
-        if effect.id == int(search) or effect.name == search:
+        if effect.name == search:
             return effect
+    search = int(search)
+    if effect.id == search:
+        return effect
     raise SharkErrors.EffectNotFoundError(search)
