@@ -18,6 +18,9 @@ class AppliedEffect:
         else:
             self.expiry = datetime.strptime(expiry, "%S:%M:%H/%d:%m:%Y")
 
+    def extend(self, duration):
+        self.expiry = self.expiry + duration
+
 
 effects = [
     Effect(0, "Money Bag", timedelta(days=1))
