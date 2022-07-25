@@ -3,10 +3,11 @@ from handlers import databaseHandler
 from datetime import datetime
 import json
 
-class Member():
-    
+
+class Member:
+
     def __init__(self, member_data):
-        
+
         self.id = member_data["id"]
         self.balance = member_data["balance"]
         self.inventory = member_data["inventory"]
@@ -99,7 +100,7 @@ class Member():
 
     async def fetch_discord_member(self, bot):
         self.discordMember = bot.get_user(self.id)
-        if self.discordMember == None:
+        if self.discordMember is None:
             try:
                 self.discordMember = await bot.fetch_user(self.id)
             except:
@@ -109,23 +110,23 @@ class Member():
 
     def link_account(self, account):
         account = account.lower()
-        if self.linked_account != None:
+        if self.linked_account is not None:
             raise SharkErrors.AccountAlreadyLinkedError
-        
+
         usedAccounts = get_used_accounts()
         if account in usedAccounts:
             raise SharkErrors.AccountAlreadyInUseError
 
         usedAccounts.append(account)
         write_used_accounts(usedAccounts)
-        
+
         self.linked_account = account
         self.write_data()
 
     def unlink_account(self):
-        if self.linked_account == None:
+        if self.linked_account is None:
             raise SharkErrors.AccountNotLinkedError
-        
+
         usedAccounts = get_used_accounts()
         usedAccounts.remove(self.linked_account)
         write_used_accounts(usedAccounts)
@@ -199,7 +200,7 @@ class Member():
 
 
 class BlankMember(Member):
-    
+
     def __init__(self, member_id):
         self.id = int(member_id)
         self.balance = defaultvalues["balance"]
