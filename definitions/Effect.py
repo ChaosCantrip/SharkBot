@@ -7,3 +7,6 @@ class Effect:
         self.id = effectid
         self.name = name
         self.duration = duration
+
+
+effects = []
