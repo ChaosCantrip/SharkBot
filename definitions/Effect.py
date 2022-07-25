@@ -40,6 +40,13 @@ class AppliedEffect:
         return data
 
 
+class NewEffect(AppliedEffect):
+
+    def __init__(self, effectid, duration):
+        self.id = effectid
+        self.expiry = datetime.now() + duration
+
+
 effects = [
     Effect(0, "Money Bag")
 ]
