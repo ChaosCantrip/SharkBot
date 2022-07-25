@@ -461,8 +461,8 @@ class Collectibles(commands.Cog):
             await ctx.reply("Sorry, I couldn't find that item!", mention_author=False)
             return
 
-        if type(item) == Item.Lootbox:
-            await ctx.reply("You can't sell lootboxes!", mention_author=False)
+        if not item.sellable:
+            await ctx.reply("You can't sell those!", mention_author=False)
             return
 
         try:
