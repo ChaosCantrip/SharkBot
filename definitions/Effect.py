@@ -34,3 +34,10 @@ class AppliedEffect:
 effects = [
     Effect(0, "Money Bag")
 ]
+
+
+def get(effectid):
+    for effect in effects:
+        if effect.id == effectid:
+            return effect
+    raise SharkErrors.EffectNotFoundError(effectid)
