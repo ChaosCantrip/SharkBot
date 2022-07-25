@@ -34,6 +34,7 @@ exotic = Collection("E", "Exotic", "exotic_item", discord.Color.gold())
 mythic = Collection("M", "Mythic", "mythic_item", discord.Color.red())
 
 lootboxes = Collection("LOOT", "Lootboxes", "lootboxes_item", discord.Color.orange())
+consumables = Collection("CON", "Consumable Items", "consumable_item", discord.Color.blurple())
 
 valentines = Collection("LOVE", "Valentines", "valentines_item", 0xfb00ff)
 witch_queen = Collection("WQ", "Witch Queen", "witch_queen_item", 0x758B72)
