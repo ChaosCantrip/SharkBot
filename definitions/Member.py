@@ -19,7 +19,7 @@ class Member():
         for effectdata in member_data["effects"]:
             effect = Effect.AppliedEffect(effectdata)
             if not effect.check_expired():
-                self.effects.append(Effect.AppliedEffect(effect))
+                self.effects.append(effect)
 
     def write_data(self):
         member_data = {}
