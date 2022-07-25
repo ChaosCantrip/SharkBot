@@ -1,1 +1,2 @@
 CON1|Money Bag|For the next 24 hours, counts are worth $3 instead of $1.|consumables|150|0:86400
+CON2|Counting Charm|Your next count is guaranteed to award a lootbox.|consumables|150|1:P
