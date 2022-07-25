@@ -200,7 +200,7 @@ class Count(commands.Cog):
 
                 if countCorrect:
                     member = Member.get(message.author.id)
-                    if member.check_for_effect(Effect.get(0)):
+                    if member.check_for_effect(Effect.get("Money Bags")):
                         member.add_balance(3)
                     else:
                         member.add_balance(1)
@@ -218,8 +218,8 @@ class Count(commands.Cog):
 
                     ##----Regular Box----##
 
-                    if box is None and member.check_for_effect(Effect.get(1)):
-                        member.remove_effect(Effect.get(1))
+                    if box is None and member.check_for_effect(Effect.get("Counting Charm")):
+                        member.remove_effect(Effect.get("Counting Charm"))
                         roll = random.randint(1, 100)
                         if roll < 3:
                             box = Item.get("LOOT5")
