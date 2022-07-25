@@ -43,7 +43,7 @@ class AppliedEffect:
 
     def convert_to_dict(self):
         data = {
-            "id": self.id
+            "id": self.effect.id
         }
         if self.expiry is None:
             data["expiry"] = None
