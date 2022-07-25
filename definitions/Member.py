@@ -223,7 +223,8 @@ defaultvalues = {
     "inventory" : [],
     "collection" : [],
     "email" : None,
-    "counts" : 0
+    "counts" : 0,
+    "effects" : []
     }
 
 
