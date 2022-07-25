@@ -218,6 +218,21 @@ class Count(commands.Cog):
 
                     ##----Regular Box----##
 
+                    if box is None and member.check_for_effect(Effect.get(1)):
+                        member.remove_effect(Effect.get(1))
+                        roll = random.randint(1, 100)
+                        if roll < 3:
+                            box = Item.get("LOOT5")
+                        elif roll < 10:
+                            box = Item.get("LOOT4")
+                        elif roll < 25:
+                            box = Item.get("LOOT3")
+                        elif roll < 50:
+                            box = Item.get("LOOT2")
+                        else:
+                            box = Item.get("LOOT1")
+
+
                     if box is None:
                         if random.randint(1, 8) == 8:
                             roll = random.randint(1, 100)
