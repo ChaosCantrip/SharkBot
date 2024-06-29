@@ -54,21 +54,6 @@ async def update(ctx):
                 description=f"```{block}```"
             ))
 
-        install_result = subprocess.check_output(["pip", "install", "-r", "requirements.txt"]).decode('utf-8')
-        install_result_lines = install_result.split("\n")
-        install_result_blocks: list[str] = [""]
-        for line in install_result_lines:
-            if len(install_result_blocks[-1]) + len(line) > 4000:
-                install_result_blocks[-1] = install_result_blocks[-1][:-2]
-                install_result_blocks.append(line)
-            else:
-                install_result_blocks[-1] += line + "\n"
-        for block in install_result_blocks:
-            await ctx.send(embed=discord.Embed(
-                title="Requirements Install",
-                description=f"```{block}```"
-            ))
-
         restart_result = subprocess.check_output(["pm2", "restart", "sharkbot"]).decode('utf-8')
     except subprocess.CalledProcessError as e:
         await ctx.send(f"Update failed! Error: {e.returncode} - {e.output.decode('utf-8')}")
