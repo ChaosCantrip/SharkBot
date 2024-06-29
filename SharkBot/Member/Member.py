@@ -1,3 +1,4 @@
+import json
 from typing import Self
 from SharkBot import Utils
 from . import DataConverter
@@ -18,8 +19,7 @@ class Member:
         self.data_version: int = member_data["data_version"]
 
         if data_changed:
-            pass
-            # self.write_data()
+            self.write_data()
 
     @classmethod
     def create(cls, member_id: int) -> Self:
@@ -46,3 +46,7 @@ class Member:
             "balance": self.balance,
             "data_version": self.data_version
         }
+
+    def write_data(self):
+        with open(f"{_MEMBERS_DIRECTORY}/{self.id}.json", "w+") as outfile:
+            json.dump(self.data, outfile, indent=4)
