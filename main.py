@@ -111,7 +111,15 @@ async def reload(ctx, extension="all"):
 
 
 async def main():
+    print(colorama.Fore.CYAN + "\nStarting SharkBot main()...")
 
+    print(colorama.Fore.CYAN + "\nLoading Cogs...\n")
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            await bot.load_extension(f"cogs.{filename[:-3]}")
+    print(colorama.Fore.GREEN + f"\nFinished loading Cogs.")
+
+    print(colorama.Fore.CYAN + "\nStarting SharkBot...")
     async with bot:
         await bot.start(os.environ.get("DISCORD_TOKEN"))
 
