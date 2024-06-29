@@ -61,6 +61,52 @@ async def update(ctx):
         await ctx.send(f"An unexpected error occurred: {e}")
 
 
+# ===== Cogs =====
+
+
+@bot.command()
+@commands.is_owner()
+async def load(message, extension):
+    await bot.load_extension(f"cogs.{extension.lower()}")
+    await message.channel.send(f"{extension.capitalize()} Cog loaded.")
+
+
+@bot.command()
+@commands.is_owner()
+async def unload(ctx, extension):
+    extension = extension.lower()
+
+    if extension == "all":
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py"):
+                ext = filename[:-3]
+                await ctx.invoke(bot.get_command("unload"), extension=ext)
+        return
+
+    await bot.unload_extension(f"cogs.{extension.lower()}")
+    await ctx.reply(f"{extension.capitalize()} unloaded.")
+
+
+@bot.command()
+@commands.is_owner()
+async def reload(ctx, extension="all"):
+    extension = extension.lower()
+
+    if extension == "all":
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py"):
+                ext = filename[:-3]
+                await bot.unload_extension(f"cogs.{ext}")
+                await bot.load_extension(f"cogs.{ext}")
+                await ctx.send(f"{ext.capitalize()} reloaded.")
+                print(f"{ext.capitalize()} Cog reloaded.")
+    else:
+        await bot.unload_extension(f"cogs.{extension}")
+        await bot.load_extension(f"cogs.{extension}")
+        await ctx.send(f"{extension.capitalize()} reloaded.")
+        print(f"{extension.capitalize()} Cog reloaded.")
+
+
 # ===== Main =====
 
 
