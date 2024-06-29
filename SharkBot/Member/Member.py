@@ -38,3 +38,11 @@ class Member:
             return cls.create(member_id)
         else:
             raise Exception(f"Member {member_id} not found.")
+
+    @property
+    def data(self) -> dict:
+        return {
+            "id": self.id,
+            "balance": self.balance,
+            "data_version": self.data_version
+        }
