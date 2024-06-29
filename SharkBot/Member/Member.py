@@ -1,5 +1,9 @@
 import json
+import os
 from typing import Self
+
+import colorama
+
 from SharkBot import Utils
 from . import DataConverter
 
@@ -50,3 +54,17 @@ class Member:
     def write_data(self):
         with open(f"{_MEMBERS_DIRECTORY}/{self.id}.json", "w+") as outfile:
             json.dump(self.data, outfile, indent=4)
+
+    @classmethod
+    def load_members(cls):
+        cls.members.clear()
+        cls.members_dict.clear()
+        for file in os.listdir(_MEMBERS_DIRECTORY):
+            with open(f"{_MEMBERS_DIRECTORY}/{file}", "r") as infile:
+                member_data = json.load(infile)
+            cls.members.append(cls(member_data))
+            cls.members_dict[member_data["id"]] = cls(member_data)
+
+
+Member.load_members()
+print(colorama.Fore.GREEN + f"Loaded data for {len(Member.members)} members.")
