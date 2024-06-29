@@ -69,4 +69,7 @@ async def main():
     async with bot:
         await bot.start(os.environ.get("DISCORD_TOKEN"))
 
-asyncio.run(main())
+try:
+    asyncio.run(main())
+except KeyboardInterrupt:
+    print(colorama.Fore.RED + "SharkBot Suspended - KeyboardInterrupt")
