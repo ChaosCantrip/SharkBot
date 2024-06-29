@@ -54,7 +54,7 @@ async def update(ctx):
                 description=f"```{block}```"
             ))
 
-        restart_result = subprocess.check_output(["pm2", "restart", "sharkbot"]).decode('utf-8')
+        restart_result = subprocess.check_output(["pm2", "restart", "sharkbot", "--update-env"]).decode('utf-8')
     except subprocess.CalledProcessError as e:
         await ctx.send(f"Update failed! Error: {e.returncode} - {e.output.decode('utf-8')}")
     except Exception as e:
