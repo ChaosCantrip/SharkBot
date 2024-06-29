@@ -20,6 +20,20 @@ class Balance(commands.Cog):
 
         await ctx.reply(embed=embed)
 
+    @commands.command()
+    @commands.is_owner()
+    async def add_balance(self, ctx: commands.Context, member: discord.Member, amount: int):
+        sharkbot_member = SharkBot.Member.get(member.id)
+        sharkbot_member.balance += amount
+        await ctx.reply(f"Added ${amount} to {member.display_name}'s balance.")
+
+    @commands.command()
+    @commands.is_owner()
+    async def set_balance(self, ctx: commands.Context, member: discord.Member, amount: int):
+        sharkbot_member = SharkBot.Member.get(member.id)
+        sharkbot_member.balance = amount
+        await ctx.reply(f"Set {member.display_name}'s balance to ${amount}.")
+
 
 async def setup(bot):
     await bot.add_cog(Balance(bot))
