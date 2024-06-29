@@ -1,5 +1,6 @@
 import asyncio
 import os
+import subprocess
 import colorama
 import discord
 from discord.ext import commands
@@ -27,6 +28,52 @@ async def on_ready():
     owner = app_info.owner
     await owner.send(embed=embed)
     await bot.change_presence(status=discord.Status.online)
+
+
+# ===== Core Commands =====
+
+@bot.command()
+@commands.is_owner()
+async def update(ctx):
+
+    try:
+        os.chdir('/root/SharkBot')
+
+        pull_result = subprocess.check_output(["git", "pull"]).decode('utf-8')
+        pull_result_lines = pull_result.split("\n")
+        pull_result_blocks: list[str] = [""]
+        for line in pull_result_lines:
+            if len(pull_result_blocks[-1]) + len(line) > 4000:
+                pull_result_blocks[-1] = pull_result_blocks[-1][:-2]
+                pull_result_blocks.append(line)
+            else:
+                pull_result_blocks[-1] += line + "\n"
+        for block in pull_result_blocks:
+            await ctx.send(embed=discord.Embed(
+                title="Git Pull",
+                description=f"```{block}```"
+            ))
+
+        install_result = subprocess.check_output(["pip", "install", "-r", "requirements.txt"]).decode('utf-8')
+        install_result_lines = install_result.split("\n")
+        install_result_blocks: list[str] = [""]
+        for line in install_result_lines:
+            if len(install_result_blocks[-1]) + len(line) > 4000:
+                install_result_blocks[-1] = install_result_blocks[-1][:-2]
+                install_result_blocks.append(line)
+            else:
+                install_result_blocks[-1] += line + "\n"
+        for block in install_result_blocks:
+            await ctx.send(embed=discord.Embed(
+                title="Requirements Install",
+                description=f"```{block}```"
+            ))
+
+        restart_result = subprocess.check_output(["pm2", "restart", "sharkbot"]).decode('utf-8')
+    except subprocess.CalledProcessError as e:
+        await ctx.send(f"Update failed! Error: {e.returncode} - {e.output.decode('utf-8')}")
+    except Exception as e:
+        await ctx.send(f"An unexpected error occurred: {e}")
 
 
 # ===== Main =====
