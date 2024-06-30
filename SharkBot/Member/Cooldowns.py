@@ -30,5 +30,10 @@ class Cooldown:
     def data(self) -> str:
         return datetime.strftime(self.expiry, _TIME_FORMAT)
 
+
 class Cooldowns:
-    pass
+
+    def __init__(self, hourly: str, daily: str, weekly: str):
+        self.hourly: Cooldown = Cooldown(timedelta(hours=1), hourly)
+        self.daily: Cooldown = Cooldown(timedelta(days=1), daily)
+        self.weekly: Cooldown = Cooldown(timedelta(weeks=1), weekly)
