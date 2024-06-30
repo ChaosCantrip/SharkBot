@@ -1,0 +1,2 @@
+class Cooldowns:
+    pass
