@@ -9,6 +9,10 @@ class Cooldown:
         self.duration: timedelta = duration
         self.expiry: datetime = datetime.strptime(expiry, _TIME_FORMAT)
 
+    @property
+    def expired(self) -> bool:
+        return datetime.utcnow() > self.expiry
+
 
 class Cooldowns:
     pass
