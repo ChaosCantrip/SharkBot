@@ -37,3 +37,11 @@ class Cooldowns:
         self.hourly: Cooldown = Cooldown(timedelta(hours=1), hourly)
         self.daily: Cooldown = Cooldown(timedelta(days=1), daily)
         self.weekly: Cooldown = Cooldown(timedelta(weeks=1), weekly)
+
+    @property
+    def data(self) -> dict:
+        return {
+            "hourly": self.hourly.data,
+            "daily": self.daily.data,
+            "weekly": self.weekly.data
+        }
