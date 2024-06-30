@@ -4,7 +4,7 @@ from discord.ext import commands
 import SharkBot
 
 
-class Balance(commands.Cog):
+class Economy(commands.Cog):
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -36,10 +36,10 @@ class Balance(commands.Cog):
 
 
 async def setup(bot):
-    await bot.add_cog(Balance(bot))
-    print("Balance Cog Loaded.")
+    await bot.add_cog(Economy(bot))
+    print("Economy Cog Loaded.")
 
 
 async def teardown(bot):
-    await bot.remove_cog("Balance")
-    print("Balance Cog Unloaded.")
+    await bot.remove_cog("Economy")
+    print("Economy Cog Unloaded.")
