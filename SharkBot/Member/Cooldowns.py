@@ -1,5 +1,7 @@
 from datetime import timedelta, datetime
 
+import humanize
+
 _TIME_FORMAT = "%d/%m/%Y-%H:%M:%S"
 
 
@@ -19,6 +21,10 @@ class Cooldown:
     @property
     def time_remaining(self) -> timedelta:
         return self.expiry - datetime.utcnow()
+
+    @property
+    def time_remaining_string(self) -> str:
+        return humanize.precisedelta(self.time_remaining, format="%0.0f")
 
 class Cooldowns:
     pass
