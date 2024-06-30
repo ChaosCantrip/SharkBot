@@ -34,6 +34,64 @@ class Economy(commands.Cog):
         sharkbot_member.balance = amount
         await ctx.reply(f"Set {member.display_name}'s balance to ${amount}.")
 
+    @commands.command()
+    async def claim(self, ctx: commands.Context):
+        member = SharkBot.Member.get(ctx.author.id)
+
+        embed = discord.Embed()
+        embed.title = f"{ctx.author.display_name}'s Claim"
+        embed.colour = discord.Colour.blurple()
+        embed.set_thumbnail(url=ctx.author.display_avatar.url)
+        embed.description = "Free shit!"
+
+        if member.cooldowns.hourly.expired:
+            member.cooldowns.hourly.reset()
+            member.balance += 10
+            embed.add_field(
+                name="Hourly",
+                value="Success! You claimed **$10**!",
+                inline=False
+            )
+        else:
+            embed.add_field(
+                name="Hourly",
+                value=f"You still have *{member.cooldowns.hourly.time_remaining_string}* left!",
+                inline=False
+            )
+
+        if member.cooldowns.daily.expired:
+            member.cooldowns.daily.reset()
+            member.balance += 100
+            embed.add_field(
+                name="Daily",
+                value="Success! You claimed **$100**!",
+                inline=False
+            )
+        else:
+            embed.add_field(
+                name="Daily",
+                value=f"You still have *{member.cooldowns.daily.time_remaining_string}* left!",
+                inline=False
+            )
+
+        if member.cooldowns.weekly.expired:
+            member.cooldowns.weekly.reset()
+            member.balance += 500
+            embed.add_field(
+                name="Weekly",
+                value="Success! You claimed **$500**!",
+                inline=False
+            )
+        else:
+            embed.add_field(
+                name="Weekly",
+                value=f"You still have *{member.cooldowns.weekly.time_remaining_string}* left!",
+                inline=False
+            )
+
+        await ctx.reply(embed=embed)
+        member.write_data()
+
 
 async def setup(bot):
     await bot.add_cog(Economy(bot))
