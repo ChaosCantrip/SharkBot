@@ -16,5 +16,9 @@ class Cooldown:
     def reset(self):
         self.expiry = datetime.utcnow() + self.duration
 
+    @property
+    def time_remaining(self) -> timedelta:
+        return self.expiry - datetime.utcnow()
+
 class Cooldowns:
     pass
