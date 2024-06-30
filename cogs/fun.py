@@ -71,6 +71,8 @@ class Fun(commands.Cog):
                 value=f"You lost **${amount:,}**!"
             )
         await ctx.reply(embed=embed)
+        member.write_data()
+
 
 async def setup(bot):
     await bot.add_cog(Fun(bot))
