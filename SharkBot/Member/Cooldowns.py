@@ -13,6 +13,8 @@ class Cooldown:
     def expired(self) -> bool:
         return datetime.utcnow() > self.expiry
 
+    def reset(self):
+        self.expiry = datetime.utcnow() + self.duration
 
 class Cooldowns:
     pass
