@@ -38,7 +38,20 @@ class Version2(VERSION):
         return member_data
 
 
+class Version3(VERSION):
+
+    @staticmethod
+    def _convert(member_data: dict) -> dict:
+        member_data["cooldowns"] = {
+            "hourly": "01/01/2000-00:00:00",
+            "daily": "01/01/2000-00:00:00",
+            "weekly": "01/01/2000-00:00:00"
+        }
+        return member_data
+
+
 versions: list[type[VERSION]] = [
     Version1,
-    Version2
+    Version2,
+    Version3
 ]
