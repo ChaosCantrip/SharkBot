@@ -26,5 +26,9 @@ class Cooldown:
     def time_remaining_string(self) -> str:
         return humanize.precisedelta(self.time_remaining, format="%0.0f")
 
+    @property
+    def data(self) -> str:
+        return datetime.strftime(self.expiry, _TIME_FORMAT)
+
 class Cooldowns:
     pass
