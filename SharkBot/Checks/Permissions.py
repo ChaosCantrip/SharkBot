@@ -6,5 +6,6 @@ import SharkBot
 def is_admin():
     async def predicate(ctx: commands.Context):
         member = SharkBot.Member.get(ctx.author.id)
-        return member.permissions.admin
+        if not member.permissions.admin:
+            raise commands.MissingPermissions(["admin"])
     return commands.check(predicate)
