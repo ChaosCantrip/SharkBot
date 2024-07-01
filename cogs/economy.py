@@ -92,6 +92,25 @@ class Economy(commands.Cog):
         await ctx.reply(embed=embed)
         member.write_data()
 
+    @commands.command(aliases=["transfer"])
+    async def pay(self, ctx, target: discord.Member, amount: int):
+        member = SharkBot.Member.get(ctx.author.id)
+        target_member = SharkBot.Member.get(target.id)
+
+        if amount < 0:
+            await ctx.send("Nice try buddy. Please enter a positive amount!")
+            return
+        if member.balance < amount:
+            await ctx.send("Sorry, you don't have enough SharkCoins to do that.")
+            return
+
+        member.balance -= amount
+        target_member.balance += amount
+        await ctx.reply(f"Sent **${amount:,}** to {target.mention}.", mention_author=False)
+
+        member.write_data()
+        target_member.write_data()
+
 
 async def setup(bot):
     await bot.add_cog(Economy(bot))
