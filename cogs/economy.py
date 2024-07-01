@@ -21,14 +21,14 @@ class Economy(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command()
-    @commands.is_owner()
+    @SharkBot.Checks.Permissions.is_admin()
     async def add_balance(self, ctx: commands.Context, member: discord.Member, amount: int):
         sharkbot_member = SharkBot.Member.get(member.id)
         sharkbot_member.balance += amount
         await ctx.reply(f"Added ${amount} to {member.display_name}'s balance.")
 
     @commands.command()
-    @commands.is_owner()
+    @SharkBot.Checks.Permissions.is_admin()
     async def set_balance(self, ctx: commands.Context, member: discord.Member, amount: int):
         sharkbot_member = SharkBot.Member.get(member.id)
         sharkbot_member.balance = amount
