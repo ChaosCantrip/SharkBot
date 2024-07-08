@@ -1,0 +1,2 @@
+class Lootpool:
+    pass
