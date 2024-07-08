@@ -14,3 +14,6 @@ class SharkError(Exception):
         """Method for responding to the invoking command with a coherent response"""
 
         return False
+
+class LootpoolNotFoundError(SharkError):
+    pass
