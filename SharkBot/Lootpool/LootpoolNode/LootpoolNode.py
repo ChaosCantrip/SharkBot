@@ -1,0 +1,2 @@
+class LootpoolNode:
+    pass
