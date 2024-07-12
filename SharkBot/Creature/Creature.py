@@ -1,4 +1,4 @@
-from typing import Self
+from typing import Self, Optional
 import difflib
 from SharkBot.Creature import BaseStats
 from SharkBot.Errors import CreatureNotFoundError
@@ -48,3 +48,32 @@ class Creature:
             return cls.creatures_map[closest_match[0]]
         else:
             raise CreatureNotFoundError(name)
+
+    # ===== Abilities =====
+
+    @staticmethod
+    def leader_skill_description(level: int) -> Optional[str]:
+        """
+        Will be set within Creature subclasses.
+        :param level:
+        :return:
+        """
+        return None
+
+    @staticmethod
+    def support_skill_description(level: int) -> Optional[str]:
+        """
+        Will be set within Creature subclasses.
+        :param level:
+        :return:
+        """
+        return None
+
+    @staticmethod
+    def unique_ability_description(level: int) -> Optional[str]:
+        """
+        Will be set within Creature subclasses.
+        :param level:
+        :return:
+        """
+        return None
