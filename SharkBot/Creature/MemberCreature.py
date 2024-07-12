@@ -1,4 +1,4 @@
-from . import Creature
+from . import Creature, LevelledStats
 
 LEVEL_THRESHOLDS: list[int] = [
     100,
@@ -47,6 +47,10 @@ class MemberCreature:
             if self.power < threshold:
                 return i
         return len(LEVEL_THRESHOLDS)
+
+    @property
+    def stats(self) -> LevelledStats:
+        return LevelledStats(self._base_creature.base_stats, self.level)
 
     # ===== Abilities =====
 
