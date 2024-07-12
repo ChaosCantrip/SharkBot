@@ -1,6 +1,7 @@
 from typing import Self
-
+import difflib
 from SharkBot.Creature import BaseStats
+from SharkBot.Errors import CreatureNotFoundError
 
 
 class Creature:
@@ -28,3 +29,22 @@ class Creature:
     @property
     def base_stats(self) -> BaseStats:
         return self._base_stats
+
+    # ===== Class Methods =====
+
+    @classmethod
+    def get(cls, id: str) -> Self:
+        try:
+            return cls.creatures_map[id]
+        except KeyError:
+            raise CreatureNotFoundError(id)
+
+    @classmethod
+    def search(cls, name: str, accuracy: float = 0.7) -> Self:
+        name = name.lower()
+        creature_ids = cls.creatures_map.keys()
+        closest_match = difflib.get_close_matches(name, creature_ids, n=1, cutoff=accuracy)
+        if closest_match:
+            return cls.creatures_map[closest_match[0]]
+        else:
+            raise CreatureNotFoundError(name)
