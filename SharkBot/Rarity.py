@@ -1,4 +1,4 @@
-class _Rarity:
+class Rarity:
 
     def __init__(self, name: str):
         self._name: str = name
@@ -10,7 +10,7 @@ class _Rarity:
         return self._name
 
 
-COMMON = _Rarity("Common")
-RARE = _Rarity("Rare")
-LEGENDARY = _Rarity("Legendary")
-MYTHIC = _Rarity("Mythic")
+COMMON = Rarity("Common")
+RARE = Rarity("Rare")
+LEGENDARY = Rarity("Legendary")
+MYTHIC = Rarity("Mythic")

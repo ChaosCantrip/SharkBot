@@ -3,7 +3,7 @@ from typing import Self
 import discord
 
 
-class _Alignment:
+class Alignment:
 
     def __init__(self, id: str, name: str, colour: discord.Colour):
         self._id: str = id
@@ -41,12 +41,12 @@ class _Alignment:
         return alignment in self._strong_against
 
 
-NEUTRAL = _Alignment("neutral", "Neutral", discord.Colour.greyple())
-RED = _Alignment("red", "Red", discord.Colour.red())
-YELLOW = _Alignment("yellow", "Yellow", discord.Colour.gold())
-PURPLE = _Alignment("purple", "Purple", discord.Colour.purple())
-GREEN = _Alignment("green", "Green", discord.Colour.green())
-BLUE = _Alignment("blue", "Blue", discord.Colour.blue())
+NEUTRAL = Alignment("neutral", "Neutral", discord.Colour.greyple())
+RED = Alignment("red", "Red", discord.Colour.red())
+YELLOW = Alignment("yellow", "Yellow", discord.Colour.gold())
+PURPLE = Alignment("purple", "Purple", discord.Colour.purple())
+GREEN = Alignment("green", "Green", discord.Colour.green())
+BLUE = Alignment("blue", "Blue", discord.Colour.blue())
 
 RED.add_weak_to(BLUE)
 RED.add_strong_against(YELLOW)
