@@ -62,9 +62,10 @@ class Banner:
     banners: list[Self] = []
     banners_map: dict[str, Self] = {}
 
-    def __init__(self, id: str, name: str, active: bool, buy_options: list[BuyOption]):
+    def __init__(self, id: str, name: str, description: str, active: bool, buy_options: list[BuyOption]):
         self._id = id
         self._name = name
+        self._description = description
         self._active = active
         self._buy_options = buy_options
 
@@ -80,6 +81,10 @@ class Banner:
     @property
     def name(self):
         return self._name
+
+    @property
+    def description(self):
+        return self._description
 
     @property
     def active(self):
@@ -103,6 +108,7 @@ class Banner:
 Banner(
     id="hourly_pull",
     name="Hourly Pull Banner",
+    description="Collect a small amount of creature power from pulls",
     active=True,
     buy_options=[
         BuyOption(
@@ -117,6 +123,7 @@ Banner(
 Banner(
     id="daily_pull",
     name="Daily Pull Banner",
+    description="Collect a moderate amount of creature power from pulls",
     active=True,
     buy_options=[
         BuyOption(
@@ -131,6 +138,7 @@ Banner(
 Banner(
     id="weekly_pull",
     name="Weekly Pull Banner",
+    description="Collect a creature power from pulls",
     active=True,
     buy_options=[
         BuyOption(
