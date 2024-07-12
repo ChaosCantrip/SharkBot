@@ -8,10 +8,11 @@ class Creature:
     creatures: list[Self] = []
     creatures_map: dict[str, Self] = {}
 
-    def __init__(self, id: str, name: str, base_stats: list[int | float]):
+    def __init__(self, id: str, name: str, base_stats: list[int | float], categories: list[str]):
         self._id: str = id
         self._name: str = name
         self._base_stats: BaseStats = BaseStats(*base_stats)
+        self._categories: list[str] = categories
 
         self.creatures.append(self)
         self.creatures_map[id] = self
@@ -29,6 +30,10 @@ class Creature:
     @property
     def base_stats(self) -> BaseStats:
         return self._base_stats
+
+    @property
+    def categories(self) -> list[str]:
+        return list(self._categories)
 
     # ===== Class Methods =====
 
