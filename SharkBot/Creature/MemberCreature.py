@@ -52,6 +52,14 @@ class MemberCreature:
     def stats(self) -> LevelledStats:
         return LevelledStats(self._base_creature.base_stats, self.level)
 
+    @property
+    def data(self) -> dict:
+        return {
+            "base_creature_id": self._base_creature.id,
+            "power": self.power,
+            "last_handled_level": self.last_handled_level
+        }
+
     # ===== Abilities =====
 
     @property
