@@ -8,6 +8,19 @@ class Creatures(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
+    @commands.Cog.listener()
+    async def on_command_completion(self, ctx: commands.Context):
+        member = SharkBot.Member.get(ctx.author.id)
+        for creature in member.creatures.creatures:
+            if creature.last_handled_level < creature.level:
+                embed = discord.Embed()
+                embed.title = f"{ctx.author.display_name}'s {creature.name} Levelled Up!"
+                embed.description = f"Your **{creature.name}** has levelled up to level {creature.level}!"
+                embed.colour = creature.alignment.colour
+                creature.last_handled_level = creature.level
+                await ctx.send(embed=embed)
+        member.write_data()
+
     @commands.command()
     @SharkBot.Checks.Permissions.is_admin()
     async def admin_add_power(self, ctx: commands.Context, member: discord.Member, base_creature_id: str, power: int):
