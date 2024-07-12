@@ -60,6 +60,16 @@ class MemberCreature:
             "last_handled_level": self.last_handled_level
         }
 
+    # ===== Power Methods =====
+
+    def add_power(self, power: int) -> int:
+        over_power = 0
+        self._power += power
+        if self._power > LEVEL_THRESHOLDS[-1]:
+            over_power = self._power - LEVEL_THRESHOLDS[-1]
+            self._power = LEVEL_THRESHOLDS[-1]
+        return over_power
+
     # ===== Abilities =====
 
     @property
