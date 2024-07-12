@@ -34,6 +34,22 @@ class MemberCreature:
     # ===== Properties =====
 
     @property
+    def id(self):
+        return self._base_creature.id
+
+    @property
+    def name(self):
+        return self._base_creature.name
+
+    @property
+    def rarity(self):
+        return self._base_creature.rarity
+
+    @property
+    def alignment(self):
+        return self._base_creature.alignment
+
+    @property
     def base_creature(self) -> Creature:
         return self._base_creature
 
