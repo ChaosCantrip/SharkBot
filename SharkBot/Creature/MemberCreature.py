@@ -1,0 +1,2 @@
+class MemberCreature:
+    pass
