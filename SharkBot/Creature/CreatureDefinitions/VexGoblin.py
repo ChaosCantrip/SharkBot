@@ -15,7 +15,8 @@ class VexGoblin(Creature):
                 "Destiny",
                 "Vex",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://www.bungie.net/common/destiny_content/grimoire/hr_images/203120_7ba749a80ba56b4f3daf7dea92aac9a9.jpg"
         )
 
 

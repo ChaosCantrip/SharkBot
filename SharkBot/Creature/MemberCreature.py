@@ -50,6 +50,10 @@ class MemberCreature:
         return self._base_creature.alignment
 
     @property
+    def icon_url(self) -> str:
+        return self._base_creature.icon_url
+
+    @property
     def base_creature(self) -> Creature:
         return self._base_creature
 

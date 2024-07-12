@@ -14,7 +14,8 @@ class Minion(Creature):
             categories=[
                 "League of Legends",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://static.wikia.nocookie.net/leagueoflegends/images/7/78/Order_Minion_Caster_Render.png/revision/latest?cb=20200601043520"
         )
 
 

@@ -17,7 +17,8 @@ class DulIncaru(Creature):
                 "Shattered Throne",
                 "Dungeon Boss",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/7/74/Dul_Incaru_the_Eternal_Return.jpg"
         )
 
 

@@ -15,7 +15,8 @@ class FallenCaptain(Creature):
                 "Destiny",
                 "Fallen",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://static.wikia.nocookie.net/destinypedia/images/a/a9/Captain.png/revision/latest?cb=20130510122813"
         )
 
 

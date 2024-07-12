@@ -17,7 +17,8 @@ class Vorgeth(Creature):
                 "Shattered Throne",
                 "Dungeon Boss",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/c/c8/Vorgeth_front.jpg"
         )
 
 

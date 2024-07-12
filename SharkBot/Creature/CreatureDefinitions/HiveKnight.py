@@ -15,7 +15,8 @@ class HiveKnight(Creature):
                 "Destiny",
                 "Hive",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/2/2f/Grimoire_Knight.jpg"
         )
 
 

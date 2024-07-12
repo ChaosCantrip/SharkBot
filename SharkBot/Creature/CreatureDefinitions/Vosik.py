@@ -17,7 +17,8 @@ class Vosik(Creature):
                 "SIVA",
                 "Raid Boss",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://static.wikia.nocookie.net/destinypedia/images/9/96/Vosik%2C_the_Archpriest_%28Grimoire_Card%29.jpg/revision/latest?cb=20161020055246"
         )
 
 

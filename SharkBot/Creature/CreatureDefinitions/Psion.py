@@ -15,7 +15,8 @@ class Psion(Creature):
                 "Destiny",
                 "Cabal",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/thumb/6/6c/Roderick-weise-psion-2.jpg/350px-Roderick-weise-psion-2.jpg"
         )
 
 

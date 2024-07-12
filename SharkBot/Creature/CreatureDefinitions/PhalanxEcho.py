@@ -17,7 +17,8 @@ class PhalanxEcho(Creature):
                 "Prophecy",
                 "Dungeon Boss",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/1/18/PhalanxEcho.jpg"
         )
 
 

@@ -14,7 +14,8 @@ class SweeperBot(Creature):
             categories=[
                 "Destiny",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://cdn.mos.cms.futurecdn.net/pujnqysTeTjpQYfqCQNNhb.jpg"
         )
 
 

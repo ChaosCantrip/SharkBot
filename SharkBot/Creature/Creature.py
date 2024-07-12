@@ -11,13 +11,14 @@ class Creature:
     creatures_map: dict[str, Self] = {}
 
     def __init__(self, id: str, name: str, base_stats: list[int | float], categories: list[str], rarity: Rarity,
-                 alignment: Alignment):
+                 alignment: Alignment, icon_url: str):
         self._id: str = id
         self._name: str = name
         self._base_stats: BaseStats = BaseStats(*base_stats)
         self._categories: list[str] = categories
         self._rarity: Rarity = rarity
         self._alignment: Alignment = alignment
+        self._icon_url: str = icon_url
 
         self.creatures.append(self)
         self.creatures_map[id] = self
@@ -47,6 +48,10 @@ class Creature:
     @property
     def categories(self) -> list[str]:
         return list(self._categories)
+
+    @property
+    def icon_url(self) -> str:
+        return self._icon_url
 
     # ===== Class Methods =====
 

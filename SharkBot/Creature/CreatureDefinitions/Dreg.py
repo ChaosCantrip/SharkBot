@@ -15,7 +15,8 @@ class Dreg(Creature):
                 "Destiny",
                 "Fallen",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://static.wikia.nocookie.net/destinypedia/images/c/cc/Dreg.png/revision/latest?cb=20130510122121"
         )
 
 

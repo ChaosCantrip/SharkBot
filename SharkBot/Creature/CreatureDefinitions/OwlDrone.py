@@ -14,7 +14,8 @@ class OwlDrone(Creature):
             categories=[
                 "Valorant",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1603635331/valorant--character--sova-drone-01--by-larry-ray.jpg"
         )
 
 

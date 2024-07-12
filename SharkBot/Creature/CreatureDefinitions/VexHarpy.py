@@ -15,7 +15,8 @@ class VexHarpy(Creature):
                 "Destiny",
                 "Vex",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/thumb/3/37/Grimoire_Harpy.jpg/325px-Grimoire_Harpy.jpg"
         )
 
 

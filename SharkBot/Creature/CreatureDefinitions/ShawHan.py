@@ -16,7 +16,8 @@ class ShawHan(Creature):
                 "Guardian",
                 "Hunter",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://static.wikia.nocookie.net/destinypedia/images/8/8a/Shaw_Han.png/revision/latest?cb=20220330233315"
         )
 
 

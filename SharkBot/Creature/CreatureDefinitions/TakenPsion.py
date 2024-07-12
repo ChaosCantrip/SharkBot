@@ -15,7 +15,8 @@ class TakenPsion(Creature):
                 "Destiny",
                 "Taken",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/3/3e/Grimoire_Taken_Psion.jpg"
         )
 
 

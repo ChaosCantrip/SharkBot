@@ -15,7 +15,8 @@ class TakenHobgoblin(Creature):
                 "Destiny",
                 "Taken",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/6/68/Grimoire_Taken_Hobgoblin.jpg"
         )
 
 

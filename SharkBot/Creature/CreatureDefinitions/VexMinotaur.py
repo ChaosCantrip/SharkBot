@@ -15,7 +15,8 @@ class VexMinotaur(Creature):
                 "Destiny",
                 "Vex",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://www.bungie.net/common/destiny_content/grimoire/hr_images/203140_1f1a5d3bb8f7ec7e73f19023df0f0ba6.jpg"
         )
 
 

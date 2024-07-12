@@ -15,7 +15,8 @@ class Thrall(Creature):
                 "Destiny",
                 "Hive",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/c/c1/Grimoire_Thrall.jpg"
         )
 
 

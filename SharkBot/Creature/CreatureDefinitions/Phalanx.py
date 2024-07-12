@@ -15,7 +15,8 @@ class Phalanx(Creature):
                 "Destiny",
                 "Cabal",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/thumb/2/2e/Phalanx_%28RL%29.jpg/1200px-Phalanx_%28RL%29.jpg"
         )
 
 

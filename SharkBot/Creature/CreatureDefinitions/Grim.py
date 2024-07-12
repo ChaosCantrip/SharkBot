@@ -15,7 +15,8 @@ class Grim(Creature):
                 "Destiny",
                 "Dread",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/04/destiny-2-the-grim-ezgif-com-webp-to-jpg-converter.jpg"
         )
 
 

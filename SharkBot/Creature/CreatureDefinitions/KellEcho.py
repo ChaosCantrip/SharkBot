@@ -17,7 +17,8 @@ class KellEcho(Creature):
                 "Prophecy",
                 "Dungeon Boss",
                 "Video Games"
-            ]
+            ],
+            icon_url="https://destiny.wiki.gallery/images/e/ec/Kell_Echo.jpg"
         )
 
 
