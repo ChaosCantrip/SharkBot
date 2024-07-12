@@ -60,9 +60,18 @@ class Version4(VERSION):
         return member_data
 
 
+class Version5(VERSION):
+
+    @staticmethod
+    def _convert(member_data: dict) -> dict:
+        member_data["creatures"] = []
+        return member_data
+
+
 versions: list[type[VERSION]] = [
     Version1,
     Version2,
     Version3,
-    Version4
+    Version4,
+    Version5
 ]

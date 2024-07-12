@@ -5,7 +5,7 @@ from typing import Self
 import colorama
 
 from SharkBot import Utils
-from SharkBot.Member import Cooldowns, Permissions
+from SharkBot.Member import Cooldowns, Permissions, MemberCreatures
 from . import DataConverter
 
 _MEMBERS_DIRECTORY = "data/live/members"
@@ -23,6 +23,7 @@ class Member:
         self.balance: int = member_data["balance"]
         self.cooldowns: Cooldowns = Cooldowns(**member_data["cooldowns"])
         self.permissions: Permissions = Permissions(**member_data["permissions"])
+        self.creatures: MemberCreatures = MemberCreatures(member_data["creatures"])
         self.data_version: int = member_data["data_version"]
 
         if data_changed:
@@ -53,6 +54,7 @@ class Member:
             "balance": self.balance,
             "cooldowns": self.cooldowns.data,
             "permissions": self.permissions.data,
+            "creatures": self.creatures.data,
             "data_version": self.data_version
         }
 
