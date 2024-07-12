@@ -2,17 +2,22 @@ from typing import Self, Optional
 import difflib
 from SharkBot.Creature import BaseStats
 from SharkBot.Errors import CreatureNotFoundError
+from SharkBot.Rarity import Rarity
+from SharkBot.Alignment import Alignment
 
 
 class Creature:
     creatures: list[Self] = []
     creatures_map: dict[str, Self] = {}
 
-    def __init__(self, id: str, name: str, base_stats: list[int | float], categories: list[str]):
+    def __init__(self, id: str, name: str, base_stats: list[int | float], categories: list[str], rarity: Rarity,
+                 alignment: Alignment):
         self._id: str = id
         self._name: str = name
         self._base_stats: BaseStats = BaseStats(*base_stats)
         self._categories: list[str] = categories
+        self._rarity: Rarity = rarity
+        self._alignment: Alignment = alignment
 
         self.creatures.append(self)
         self.creatures_map[id] = self
@@ -26,6 +31,14 @@ class Creature:
     @property
     def name(self) -> str:
         return self._name
+
+    @property
+    def rarity(self) -> Rarity:
+        return self._rarity
+
+    @property
+    def alignment(self) -> Alignment:
+        return self._alignment
 
     @property
     def base_stats(self) -> BaseStats:
