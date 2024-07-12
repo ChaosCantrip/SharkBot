@@ -25,9 +25,16 @@ class Creatures(commands.Cog):
         except SharkBot.Errors.CreatureNotFoundError:
             await ctx.send(f"You do not have a `{creature.id}`.")
             return
+        if member_creature.level == 0:
+            embed = discord.Embed()
+            embed.title = f"{ctx.author.display_name}'s {creature.name}"
+            embed.description = f"You have :fire: {member_creature.power}P/100P for **{creature.name}**."
+            embed.colour = member_creature.alignment.colour
+            await ctx.send(embed=embed)
+            return
         embed = discord.Embed()
         embed.title = f"{ctx.author.display_name}'s {creature.name}"
-        embed.description = f"{member_creature.power}P | Level {member_creature.level}"
+        embed.description = f":fire: {member_creature.power}P | Level {member_creature.level}"
         embed.add_field(
             name="Stats",
             value=f"Attack:                   `{member_creature.stats.attack}`\n"
@@ -38,6 +45,12 @@ class Creatures(commands.Cog):
                   f"Additional Attack Chance: `{member_creature.stats.additional_attack_chance:.2%}`\n",
             inline=False
         )
+        embed.add_field(
+            name="Categories",
+            value="\n".join([f"`{category}`" for category in creature.categories]),
+            inline=False
+        )
+        embed.set_footer(text=f"{creature.rarity.name} | {creature.alignment.name} Alignment")
         embed.colour = member_creature.alignment.colour
         embed.set_thumbnail(url=creature.icon_url)
         await ctx.send(embed=embed)
