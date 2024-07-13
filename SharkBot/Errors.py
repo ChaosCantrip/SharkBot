@@ -18,3 +18,6 @@ class SharkError(Exception):
 
 class CreatureNotFoundError(SharkError):
     pass
+
+class NotEnoughTicketsError(SharkError):
+    pass
