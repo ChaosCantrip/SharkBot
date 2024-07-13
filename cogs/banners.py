@@ -20,6 +20,15 @@ class Banners(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @SharkBot.Checks.Permissions.is_admin()
+    async def admin_add_tickets(self, ctx: commands.Context, target_member: discord.Member, ticket_id: str, amount: int):
+        member = SharkBot.Member.get(target_member.id)
+        ticket = SharkBot.Ticket.get(ticket_id.lower())
+        member.tickets.add_tickets(ticket, amount)
+        member.write_data()
+        await ctx.reply(f"Added {amount}x **{ticket.name}** to {target_member.mention}'s inventory")
+
+    @commands.command()
     async def banners(self, ctx: commands.Context):
         embed = discord.Embed()
         embed.title = "Banners"
@@ -34,6 +43,7 @@ class Banners(commands.Cog):
 
     @commands.command()
     async def pull(self, ctx: commands.Context, banner_id: str):
+        member = SharkBot.Member.get(ctx.author.id)
         banner_id = banner_id.lower()
         embed = discord.Embed()
         embed.title = f"{ctx.author.display_name}'s Pull"
@@ -43,6 +53,14 @@ class Banners(commands.Cog):
             await ctx.send(embed=embed)
             return
         banner, buy_option = active_buy_options[banner_id]
+        if type(buy_option.cost) == SharkBot.TicketCost:
+            try:
+                member.tickets.remove_tickets(buy_option.cost.ticket, buy_option.cost.amount)
+            except SharkBot.Errors.NotEnoughTicketsError:
+                embed.colour = discord.Colour.red()
+                embed.description = f"You only have {member.tickets.tickets.count(buy_option.cost.ticket)}x :ticket: **{buy_option.cost.ticket.name}**"
+                await ctx.send(embed=embed)
+                return
         embed.description = f"You pulled `{sum([pull.number for pull in buy_option.pulls])}x` from the **{banner.name}**."
         embed.description += "\n" + "\n".join([f"{pull.number}x {pull.lootpool_id}" for pull in buy_option.pulls])
         await ctx.send(embed=embed)
