@@ -73,8 +73,9 @@ class Member:
         for file in os.listdir(_MEMBERS_DIRECTORY):
             with open(f"{_MEMBERS_DIRECTORY}/{file}", "r") as infile:
                 member_data = json.load(infile)
-            cls.members.append(cls(member_data))
-            cls.members_dict[member_data["id"]] = cls(member_data)
+            member = cls(member_data)
+            cls.members.append(member)
+            cls.members_dict[member_data["id"]] = member
 
 
 Member.load_members()
