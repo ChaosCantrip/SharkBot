@@ -18,6 +18,9 @@ class TicketCost:
     def amount(self):
         return self._amount
 
+    def __str__(self):
+        return f"{self.amount}x :ticket: {self.ticket.name}"
+
 
 class Pull:
 
