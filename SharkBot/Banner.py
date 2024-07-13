@@ -168,3 +168,26 @@ Banner(
         )
     ]
 )
+Banner(
+    id="ultimate_pickup",
+    name="Ultimate Creature Pickup Banner",
+    description="Pull from all common, rare and legendary creatures. Perform a 10x pull for a guaranteed legendary creature.",
+    active=True,
+    buy_options=[
+        BuyOption(
+            name="1x Pull",
+            cost=GemCost(10),
+            pulls=[
+                Pull("ultimate_pickup", 1)
+            ]
+        ),
+        BuyOption(
+            name="10x Pull",
+            cost=GemCost(100),
+            pulls=[
+                Pull("ultimate_pickup", 9),
+                Pull("ultimate_pickup_10", 1)
+            ]
+        )
+    ]
+)

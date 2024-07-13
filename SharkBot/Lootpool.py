@@ -237,3 +237,38 @@ Lootpool(
         LootpoolNode(chance=1, reward=CurrencyReward("money", 480, 620))
     ]
 )
+Lootpool(
+    id="ultimate_pickup_common",
+    pool=[
+        LootpoolNode(chance=1, reward=PowerReward(creature_id, 100))
+        for creature_id in common_creature_ids
+    ]
+)
+Lootpool(
+    id="ultimate_pickup_rare",
+    pool=[
+        LootpoolNode(chance=1, reward=PowerReward(creature_id, 250))
+        for creature_id in rare_creature_ids
+    ]
+)
+Lootpool(
+    id="ultimate_pickup_legendary",
+    pool=[
+        LootpoolNode(chance=1, reward=PowerReward(creature_id, 500))
+        for creature_id in legendary_creature_ids
+    ]
+)
+Lootpool(
+    id="ultimate_pickup",
+    pool=[
+        LootpoolNode(chance=0.45, reward=LootpoolReward("ultimate_pickup_common")),
+        LootpoolNode(chance=0.4, reward=LootpoolReward("ultimate_pickup_rare")),
+        LootpoolNode(chance=0.15, reward=LootpoolReward("ultimate_pickup_legendary"))
+    ]
+)
+Lootpool(
+    id="ultimate_pickup_10",
+    pool=[
+        LootpoolNode(chance=1, reward=LootpoolReward("ultimate_pickup_legendary"))
+    ]
+)
