@@ -67,11 +67,20 @@ class Banners(commands.Cog):
             for _ in range(pull.number):
                 roll = lootpool.roll()
                 rewards.append((roll.creature_id, roll.amount))
-        for creature, amount in rewards:
-            member.creatures.add_power(creature, amount)
-        embed.description = "\n".join([f":fire: {amount}P **{SharkBot.Creature.get(creature).name}**" for creature, amount in rewards])
+        embed.description = "You pulled:"
+        for creature_id, amount in rewards:
+            member.creatures.add_power(creature_id, amount)
+            creature = SharkBot.Creature.get(creature_id)
+            embed.description += f"\n{creature.rarity.emoji} {creature.name} (+{amount} :fire:)"
+
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def hc(self, ctx: commands.Context):
+        guild = ctx.guild
+        emotes = guild.emojis
+        print([emote.name for emote in emotes])
+        print([emote.id for emote in emotes])
 
 async def setup(bot):
     await bot.add_cog(Banners(bot))
