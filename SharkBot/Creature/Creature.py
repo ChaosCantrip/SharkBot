@@ -72,6 +72,30 @@ class Creature:
         else:
             raise CreatureNotFoundError(name)
 
+    # ===== Skill Ranks =====
+
+    @staticmethod
+    def leader_skill_rank(level: int) -> int:
+        if level >= 18:
+            return 4
+        elif level >= 10:
+            return 3
+        elif level >= 5:
+            return 2
+        else:
+            return 1
+
+    @staticmethod
+    def unique_ability_rank(level: int) -> int:
+        if level >= 20:
+            return 4
+        elif level >= 12:
+            return 3
+        elif level >= 7:
+            return 2
+        else:
+            return 1
+
     # ===== Abilities =====
 
     @staticmethod

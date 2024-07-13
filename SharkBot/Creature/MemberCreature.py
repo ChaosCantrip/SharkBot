@@ -90,6 +90,16 @@ class MemberCreature:
             self._power = LEVEL_THRESHOLDS[-1]
         return over_power
 
+    # ===== Ability Ranks =====
+
+    @property
+    def leader_skill_rank(self):
+        return self._base_creature.leader_skill_rank(self.level)
+
+    @property
+    def unique_ability_rank(self):
+        return self._base_creature.unique_ability_rank(self.level)
+
     # ===== Abilities =====
 
     @property
