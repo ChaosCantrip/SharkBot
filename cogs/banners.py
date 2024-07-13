@@ -33,6 +33,7 @@ class Banners(commands.Cog):
         embed = discord.Embed()
         embed.title = "Banners"
         embed.description = "Here are the currently active banners.\nUse `$pull <id>` to pull from a banner.\n"
+        embed.colour = discord.Colour.gold()
         for banner, buy_options in active_banners.items():
             embed.add_field(
                 name=banner.name,
@@ -74,6 +75,18 @@ class Banners(commands.Cog):
             embed.description += f"\n{creature.rarity.emoji} {creature.name} (+{amount} :fire:)"
 
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def tickets(self, ctx: commands.Context):
+        member = SharkBot.Member.get(ctx.author.id)
+        embed = discord.Embed()
+        embed.title = f"{ctx.author.display_name}'s Tickets"
+        embed.description = "Here are your tickets.\n"
+        for ticket in set(member.tickets.tickets):
+            embed.description += f"\n{member.tickets.tickets.count(ticket)}x :ticket: {ticket.name}"
+        embed.colour = discord.Colour.blurple()
+        await ctx.send(embed=embed)
+
 
 async def setup(bot):
     await bot.add_cog(Banners(bot))
