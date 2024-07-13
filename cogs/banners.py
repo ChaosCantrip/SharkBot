@@ -75,13 +75,6 @@ class Banners(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def hc(self, ctx: commands.Context):
-        guild = ctx.guild
-        emotes = guild.emojis
-        print([emote.name for emote in emotes])
-        print([emote.id for emote in emotes])
-
 async def setup(bot):
     await bot.add_cog(Banners(bot))
     print("Banners Cog Loaded.")
