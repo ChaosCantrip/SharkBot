@@ -115,7 +115,7 @@ Banner(
     active=True,
     buy_options=[
         BuyOption(
-            name="3x",
+            name="3x Pull",
             cost=TicketCost("hourly_pull", 3),
             pulls=[
                 Pull("hourly_pull", 3)
@@ -130,7 +130,7 @@ Banner(
     active=True,
     buy_options=[
         BuyOption(
-            name="3x",
+            name="3x Pull",
             cost=TicketCost("daily_pull", 3),
             pulls=[
                 Pull("daily_pull", 3)
@@ -145,7 +145,7 @@ Banner(
     active=True,
     buy_options=[
         BuyOption(
-            name="3x",
+            name="3x Pull",
             cost=TicketCost("weekly_pull", 3),
             pulls=[
                 Pull("weekly_pull", 3)
