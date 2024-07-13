@@ -34,3 +34,7 @@ class MemberCreatures:
             self._creatures.append(creature)
             self._creatures_map[base_creature_id] = creature
         return creature.add_power(power)
+
+    def remove(self, creature: MemberCreature):
+        self._creatures.remove(creature)
+        del self._creatures_map[creature.base_creature.id]

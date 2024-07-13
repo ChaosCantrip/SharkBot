@@ -30,6 +30,15 @@ class Creatures(commands.Cog):
         await ctx.send(f"{member.mention}'s `{base_creature_id}` has gained {power} power. {over_power} power was lost.")
 
     @commands.command()
+    @SharkBot.Checks.Permissions.is_admin()
+    async def admin_remove_creature(self, ctx: commands.Context, member: discord.Member, base_creature_id: str):
+        sharkbot_member = SharkBot.Member.get(member.id)
+        creature = sharkbot_member.creatures.get(base_creature_id)
+        sharkbot_member.creatures.remove(creature)
+        sharkbot_member.write_data()
+        await ctx.send(f"{member.mention}'s `{base_creature_id}` has been removed.")
+
+    @commands.command()
     async def creature(self, ctx: commands.Context, *, search):
         member = SharkBot.Member.get(ctx.author.id)
         creature = SharkBot.Creature.search(search)
