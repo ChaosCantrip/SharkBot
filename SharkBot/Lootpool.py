@@ -201,3 +201,39 @@ Lootpool(
         LootpoolNode(chance=0.15, reward=LootpoolReward("weekly_pull_legendary"))
     ]
 )
+Lootpool(
+    id="hourly_gems",
+    pool=[
+        LootpoolNode(chance=1, reward=CurrencyReward("gems", 3, 7))
+    ]
+)
+Lootpool(
+    id="daily_gems",
+    pool=[
+        LootpoolNode(chance=1, reward=CurrencyReward("gems", 20, 30))
+    ]
+)
+Lootpool(
+    id="weekly_gems",
+    pool=[
+        LootpoolNode(chance=1, reward=CurrencyReward("gems", 95, 105))
+    ]
+)
+Lootpool(
+    id="hourly_money",
+    pool=[
+        LootpoolNode(chance=1, reward=CurrencyReward("money", 8, 15))
+    ]
+)
+Lootpool(
+    id="daily_money",
+    pool=[
+        LootpoolNode(chance=1, reward=CurrencyReward("money", 90, 120))
+    ]
+)
+Lootpool(
+    id="weekly_money",
+    pool=[
+        LootpoolNode(chance=1, reward=CurrencyReward("money", 480, 620))
+    ]
+)
