@@ -11,14 +11,19 @@ class Creatures(commands.Cog):
     @commands.Cog.listener()
     async def on_command_completion(self, ctx: commands.Context):
         member = SharkBot.Member.get(ctx.author.id)
+        levelled_up_creatures: list[SharkBot.MemberCreature] = []
         for creature in member.creatures.creatures:
             if creature.last_handled_level < creature.level:
-                embed = discord.Embed()
-                embed.title = f"{ctx.author.display_name}'s {creature.name} Levelled Up!"
-                embed.description = f"Your **{creature.name}** has levelled up to level {creature.level}!"
-                embed.colour = creature.alignment.colour
+                levelled_up_creatures.append(creature)
                 creature.last_handled_level = creature.level
-                await ctx.send(embed=embed)
+        if levelled_up_creatures:
+            embed = discord.Embed()
+            embed.colour = discord.Colour.gold()
+            embed.title = f"{ctx.author.display_name}'s Creatures Levelled Up!"
+            embed.description = "Your creatures have levelled up!\n\n"
+            for creature in levelled_up_creatures:
+                embed.description += f"{creature.rarity.emoji} **{creature.base_creature.name}** is now level {creature.level}!\n"
+            await ctx.send(embed=embed)
         member.write_data()
 
     @commands.command()
