@@ -69,6 +69,20 @@ class Creatures(commands.Cog):
         await ctx.send(embed=embed)
 
 
+    @commands.command()
+    async def creatures(self, ctx: commands.Context):
+        member = SharkBot.Member.get(ctx.author.id)
+        embed = discord.Embed()
+        embed.title = f"{ctx.author.display_name}'s Creatures"
+        embed.description = "Here are your creatures.\n"
+        embed.colour = discord.Colour.gold()
+        for creature in member.creatures.creatures:
+            if creature.level == 0:
+                embed.description += f"\n{creature.rarity.emoji} **{creature.name}** - :fire: {creature.power}P"
+            else:
+                embed.description += f"\n{creature.rarity.emoji} **{creature.name}** - :fire: {creature.power}P | Level {creature.level}"
+        await ctx.send(embed=embed)
+
 async def setup(bot):
     await bot.add_cog(Creatures(bot))
     print("Creatures Cog Loaded.")
