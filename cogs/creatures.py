@@ -83,6 +83,7 @@ class Creatures(commands.Cog):
                 embed.description += f"\n{creature.rarity.emoji} **{creature.name}** - :fire: {creature.power}P | Level {creature.level}"
         await ctx.send(embed=embed)
 
+
 async def setup(bot):
     await bot.add_cog(Creatures(bot))
     print("Creatures Cog Loaded.")
