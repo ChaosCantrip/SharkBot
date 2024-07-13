@@ -69,7 +69,7 @@ class Banners(commands.Cog):
                 rewards.append((roll.creature_id, roll.amount))
         for creature, amount in rewards:
             member.creatures.add_power(creature, amount)
-        embed.description = "\n".join([f":fire: {amount}x {SharkBot.Creature.get(creature).name}" for creature, amount in rewards])
+        embed.description = "\n".join([f":fire: {amount}P **{SharkBot.Creature.get(creature).name}**" for creature, amount in rewards])
         await ctx.send(embed=embed)
 
 
