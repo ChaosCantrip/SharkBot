@@ -24,6 +24,17 @@ class Admin(commands.Cog):
         sharkbot_member.write_data()
         await ctx.send(f"{member.mention} is no longer an admin.")
 
+    @commands.command()
+    @SharkBot.Checks.Permissions.is_admin()
+    async def reset_claims(self, ctx: commands.Context):
+        for member in SharkBot.Member.members:
+            member.cooldowns.hourly.unexpire()
+            member.cooldowns.daily.unexpire()
+            member.cooldowns.weekly.unexpire()
+            member.write_data()
+        await ctx.send("All claims have been reset.")
+
+
 async def setup(bot):
     await bot.add_cog(Admin(bot))
     print("Admin Cog Loaded.")

@@ -14,7 +14,7 @@ class Economy(commands.Cog):
         member = SharkBot.Member.get(ctx.author.id)
         embed = discord.Embed()
         embed.title = f"{ctx.author.display_name}'s Balance"
-        embed.description = f"Your balance is **${member.balance}**."
+        embed.description = f"Your balance is :dollar: **{member.balance}** and :gem: **{member.gems}**."
         embed.set_thumbnail(url=ctx.author.display_avatar.url)
         embed.colour = discord.Colour.gold()
 
@@ -46,10 +46,14 @@ class Economy(commands.Cog):
 
         if member.cooldowns.hourly.expired:
             member.cooldowns.hourly.reset()
-            member.balance += 10
+            money = SharkBot.Lootpool.get("hourly_money").roll().amount
+            gems = SharkBot.Lootpool.get("hourly_gems").roll().amount
+            member.balance += money
+            member.gems += gems
+            member.tickets.add_tickets(SharkBot.Ticket.get("hourly_pull"), 3)
             embed.add_field(
                 name="Hourly",
-                value="Success! You claimed **$10**!",
+                value=f"+:dollar: **{money}**\n+:gem: **{gems}**\n+3x :ticket: Hourly Pull Tickets",
                 inline=False
             )
         else:
@@ -61,10 +65,14 @@ class Economy(commands.Cog):
 
         if member.cooldowns.daily.expired:
             member.cooldowns.daily.reset()
-            member.balance += 100
+            money = SharkBot.Lootpool.get("daily_money").roll().amount
+            gems = SharkBot.Lootpool.get("daily_gems").roll().amount
+            member.balance += money
+            member.gems += gems
+            member.tickets.add_tickets(SharkBot.Ticket.get("daily_pull"), 3)
             embed.add_field(
                 name="Daily",
-                value="Success! You claimed **$100**!",
+                value=f"+:dollar: **{money}**\n+:gem: **{gems}**\n+3x :ticket: Daily Pull Tickets",
                 inline=False
             )
         else:
@@ -76,10 +84,14 @@ class Economy(commands.Cog):
 
         if member.cooldowns.weekly.expired:
             member.cooldowns.weekly.reset()
-            member.balance += 500
+            money = SharkBot.Lootpool.get("weekly_money").roll().amount
+            gems = SharkBot.Lootpool.get("weekly_gems").roll().amount
+            member.balance += money
+            member.gems += gems
+            member.tickets.add_tickets(SharkBot.Ticket.get("weekly_pull"), 3)
             embed.add_field(
                 name="Weekly",
-                value="Success! You claimed **$500**!",
+                value=f"+:dollar: **{money}**\n+:gem: **{gems}**\n+3x :ticket: Weekly Pull Tickets",
                 inline=False
             )
         else:
