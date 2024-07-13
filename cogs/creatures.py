@@ -58,6 +58,24 @@ class Creatures(commands.Cog):
                   f"Additional Attack Chance: `{member_creature.stats.additional_attack_chance:.2%}`\n",
             inline=False
         )
+        if member_creature.support_skill_description:
+            embed.add_field(
+                name="Support Skill",
+                value=f"*{member_creature.support_skill_description}*",
+                inline=False
+            )
+        if member_creature.leader_skill_description:
+            embed.add_field(
+                name=f"Leader Skill - Rank {member_creature.leader_skill_rank}",
+                value=f"*{member_creature.leader_skill_description}*",
+                inline=False
+            )
+        if member_creature.unique_ability_description:
+            embed.add_field(
+                name=f"Unique Ability - Rank {member_creature.unique_ability_rank}",
+                value=f"*{member_creature.unique_ability_description}*",
+                inline=False
+            )
         embed.add_field(
             name="Categories",
             value="\n".join([f"`{category}`" for category in creature.categories]),
