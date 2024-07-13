@@ -35,11 +35,17 @@ class Banners(commands.Cog):
     @commands.command()
     async def pull(self, ctx: commands.Context, banner_id: str):
         banner_id = banner_id.lower()
+        embed = discord.Embed()
+        embed.title = f"{ctx.author.display_name}'s Pull"
         if banner_id not in active_buy_options:
-            await ctx.send("Invalid banner ID.")
+            embed.colour = discord.Colour.red()
+            embed.description = "Invalid banner ID."
+            await ctx.send(embed=embed)
             return
         banner, buy_option = active_buy_options[banner_id]
-        await ctx.send(f"Pulled from {banner.name} for {buy_option.cost}.")
+        embed.description = f"You pulled `{sum([pull.number for pull in buy_option.pulls])}x` from the **{banner.name}**."
+        embed.description += "\n" + "\n".join([f"{pull.number}x {pull.lootpool_id}" for pull in buy_option.pulls])
+        await ctx.send(embed=embed)
 
 
 async def setup(bot):
