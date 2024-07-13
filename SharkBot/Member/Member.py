@@ -21,6 +21,7 @@ class Member:
         data_changed, member_data = DataConverter.convert(member_data)
         self.id: int = member_data["id"]
         self.balance: int = member_data["balance"]
+        self.gems: int = member_data["gems"]
         self.cooldowns: Cooldowns = Cooldowns(**member_data["cooldowns"])
         self.permissions: Permissions = Permissions(**member_data["permissions"])
         self.creatures: MemberCreatures = MemberCreatures(member_data["creatures"])
@@ -53,6 +54,7 @@ class Member:
         return {
             "id": self.id,
             "balance": self.balance,
+            "gems": self.gems,
             "cooldowns": self.cooldowns.data,
             "permissions": self.permissions.data,
             "creatures": self.creatures.data,
