@@ -43,7 +43,7 @@ class Creatures(commands.Cog):
         sharkbot_member.write_data()
         await ctx.send(f"{member.mention}'s `{base_creature_id}` has been removed.")
 
-    @commands.command()
+    @commands.command(aliases=["c"])
     async def creature(self, ctx: commands.Context, *, search):
         member = SharkBot.Member.get(ctx.author.id)
         creature = SharkBot.Creature.search(search)
@@ -101,7 +101,7 @@ class Creatures(commands.Cog):
         await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(aliases=["cs"])
     async def creatures(self, ctx: commands.Context):
         member = SharkBot.Member.get(ctx.author.id)
         embed = discord.Embed()
