@@ -61,8 +61,15 @@ class Banners(commands.Cog):
                 embed.description = f"You only have {member.tickets.tickets.count(buy_option.cost.ticket)}x :ticket: **{buy_option.cost.ticket.name}**"
                 await ctx.send(embed=embed)
                 return
-        embed.description = f"You pulled `{sum([pull.number for pull in buy_option.pulls])}x` from the **{banner.name}**."
-        embed.description += "\n" + "\n".join([f"{pull.number}x {pull.lootpool_id}" for pull in buy_option.pulls])
+        rewards: list[tuple[str, int]] = []
+        for pull in buy_option.pulls:
+            lootpool = SharkBot.Lootpool.get(pull.lootpool_id)
+            for _ in range(pull.number):
+                roll = lootpool.roll()
+                rewards.append((roll.creature_id, roll.amount))
+        for creature, amount in rewards:
+            member.creatures.add_power(creature, amount)
+        embed.description = "\n".join([f":fire: {amount}x {SharkBot.Creature.get(creature).name}" for creature, amount in rewards])
         await ctx.send(embed=embed)
 
 
