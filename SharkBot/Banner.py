@@ -22,6 +22,21 @@ class TicketCost:
         return f"{self.amount}x :ticket: {self.ticket.name}"
 
 
+class GemCost:
+
+    def __init__(self, amount: int):
+        self._amount = amount
+
+    # ===== Properties =====
+
+    @property
+    def amount(self):
+        return self._amount
+
+    def __str__(self):
+        return f":gem: {self.amount}"
+
+
 class Pull:
 
     def __init__(self, lootpool_id: str, number: int):
@@ -41,7 +56,7 @@ class Pull:
 
 class BuyOption:
 
-    def __init__(self, name: str, cost: TicketCost, pulls: list[Pull]):
+    def __init__(self, name: str, cost: TicketCost | GemCost, pulls: list[Pull]):
         self._name = name
         self._cost = cost
         self._pulls = pulls
@@ -149,6 +164,29 @@ Banner(
             cost=TicketCost("weekly_pull", 3),
             pulls=[
                 Pull("weekly_pull", 3)
+            ]
+        )
+    ]
+)
+Banner(
+    id="ultimate_pickup",
+    name="Ultimate Creature Pickup Banner",
+    description="Pull from all common, rare and legendary creatures. Perform a 10x pull for a guaranteed legendary creature.",
+    active=True,
+    buy_options=[
+        BuyOption(
+            name="1x Pull",
+            cost=GemCost(10),
+            pulls=[
+                Pull("ultimate_pickup", 1)
+            ]
+        ),
+        BuyOption(
+            name="10x Pull",
+            cost=GemCost(100),
+            pulls=[
+                Pull("ultimate_pickup", 9),
+                Pull("ultimate_pickup_10", 1)
             ]
         )
     ]
