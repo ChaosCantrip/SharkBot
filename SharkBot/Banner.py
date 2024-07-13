@@ -22,6 +22,21 @@ class TicketCost:
         return f"{self.amount}x :ticket: {self.ticket.name}"
 
 
+class GemCost:
+
+    def __init__(self, amount: int):
+        self._amount = amount
+
+    # ===== Properties =====
+
+    @property
+    def amount(self):
+        return self._amount
+
+    def __str__(self):
+        return f":gem: {self.amount}"
+
+
 class Pull:
 
     def __init__(self, lootpool_id: str, number: int):
@@ -41,7 +56,7 @@ class Pull:
 
 class BuyOption:
 
-    def __init__(self, name: str, cost: TicketCost, pulls: list[Pull]):
+    def __init__(self, name: str, cost: TicketCost | GemCost, pulls: list[Pull]):
         self._name = name
         self._cost = cost
         self._pulls = pulls
