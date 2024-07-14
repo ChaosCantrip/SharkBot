@@ -50,3 +50,5 @@ class MoneyCost:
     def __str__(self):
         return f":dollar: {self.amount}"
 
+
+COSTS = GemCost | TicketCost | MoneyCost
