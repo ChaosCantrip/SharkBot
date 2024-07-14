@@ -6,7 +6,7 @@ from . import Rarity
 from . import Alignment
 from .Ticket import Ticket
 from . import Costs
-from .Shop import SHOP
+from . import Shop
 from .Banner import Banner, BuyOption, TicketCost, Pull, GemCost
 from .Creature import Creature, MemberCreature
 from .Lootpool import Lootpool

@@ -18,6 +18,10 @@ class MemberShopData:
         while self._reset_date < datetime.utcnow():
             self._reset_date += timedelta(days=7)
 
+    @property
+    def reset_date(self):
+        return self._reset_date
+
     def get_times_bought(self, item_id: str) -> int:
         return self._items.get(item_id, 0)
 
