@@ -34,3 +34,19 @@ class GemCost:
 
     def __str__(self):
         return f":gem: {self.amount}"
+
+
+class MoneyCost:
+
+    def __init__(self, amount: int):
+        self._amount = amount
+
+    # ===== Properties =====
+
+    @property
+    def amount(self):
+        return self._amount
+
+    def __str__(self):
+        return f":dollar: {self.amount}"
+
