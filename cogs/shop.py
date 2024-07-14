@@ -34,7 +34,7 @@ class Shop(commands.Cog):
         for category, items in shop_ids.items():
             embed.add_field(
                 name=category.name,
-                value=f"*{category.description}*\n" + "\n".join([f"`{item_id}` Buy **{item.item}** for **{item.cost}**  ({item.limit - member.shop_data.get_times_bought(item_id)} Remaining)" for item_id, item in items.items()]),
+                value=f"*{category.description}*\n" + "\n".join([f"`{item_id}` Buy **{item.item}** for **{item.cost}**  ({item.limit - member.shop_data.get_times_bought(item.id)} Remaining)" for item_id, item in items.items()]),
                 inline=False
             )
         reset_time_remaining = member.shop_data.reset_date - datetime.utcnow()
