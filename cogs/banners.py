@@ -54,7 +54,7 @@ class Banners(commands.Cog):
             await ctx.send(embed=embed)
             return
         banner, buy_option = active_buy_options[banner_id]
-        if type(buy_option.cost) is SharkBot.TicketCost:
+        if type(buy_option.cost) is SharkBot.Costs.TicketCost:
             try:
                 member.tickets.remove_tickets(buy_option.cost.ticket, buy_option.cost.amount)
             except SharkBot.Errors.NotEnoughTicketsError:
@@ -62,7 +62,7 @@ class Banners(commands.Cog):
                 embed.description = f"You only have {member.tickets.tickets.count(buy_option.cost.ticket)}x :ticket: **{buy_option.cost.ticket.name}**"
                 await ctx.send(embed=embed)
                 return
-        elif type(buy_option.cost) is SharkBot.GemCost:
+        elif type(buy_option.cost) is SharkBot.Costs.GemCost:
             if member.gems < buy_option.cost.amount:
                 embed.colour = discord.Colour.red()
                 embed.description = f"You only have :gem: **{member.gems}**"
