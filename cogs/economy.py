@@ -14,7 +14,23 @@ class Economy(commands.Cog):
         member = SharkBot.Member.get(ctx.author.id)
         embed = discord.Embed()
         embed.title = f"{ctx.author.display_name}'s Balance"
-        embed.description = f"Your balance is :dollar: **{member.balance:,}** and :gem: **{member.gems:,}**."
+        embed.description = f"Mmm, Capitalism."
+        embed.add_field(
+            name="Money",
+            value=f"You have :dollar: **{member.balance:,}**",
+            inline=False
+        )
+        embed.add_field(
+            name="Gems",
+            value=f"You have :gem: **{member.gems:,}**",
+            inline=False
+        )
+        embed.add_field(
+            name="Power Tokens",
+            value=f"You have {SharkBot.Emojis.POWER_TOKEN} **{member.power_tokens:,}**",
+            inline=False
+        )
+
         embed.set_thumbnail(url=ctx.author.display_avatar.url)
         embed.colour = discord.Colour.gold()
 
