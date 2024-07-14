@@ -22,6 +22,7 @@ class Member:
         self.id: int = member_data["id"]
         self.balance: int = member_data["balance"]
         self.gems: int = member_data["gems"]
+        self.power_tokens: int = member_data["power_tokens"]
         self.cooldowns: Cooldowns = Cooldowns(**member_data["cooldowns"])
         self.permissions: Permissions = Permissions(**member_data["permissions"])
         self.creatures: MemberCreatures = MemberCreatures(member_data["creatures"])
@@ -55,6 +56,7 @@ class Member:
             "id": self.id,
             "balance": self.balance,
             "gems": self.gems,
+            "power_tokens": self.power_tokens,
             "cooldowns": self.cooldowns.data,
             "permissions": self.permissions.data,
             "creatures": self.creatures.data,

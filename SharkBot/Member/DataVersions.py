@@ -84,6 +84,14 @@ class Version7(VERSION):
         return member_data
 
 
+class Version8(VERSION):
+
+    @staticmethod
+    def _convert(member_data: dict) -> dict:
+        member_data["power_tokens"] = 0
+        return member_data
+
+
 versions: list[type[VERSION]] = [
     Version1,
     Version2,
@@ -91,5 +99,6 @@ versions: list[type[VERSION]] = [
     Version4,
     Version5,
     Version6,
-    Version7
+    Version7,
+    Version8
 ]
