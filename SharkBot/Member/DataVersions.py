@@ -92,6 +92,17 @@ class Version8(VERSION):
         return member_data
 
 
+class Version9(VERSION):
+
+    @staticmethod
+    def _convert(member_data: dict) -> dict:
+        member_data["shop_data"] = {
+            "items": {},
+            "reset_date": "15/07/2024"
+        }
+        return member_data
+
+
 versions: list[type[VERSION]] = [
     Version1,
     Version2,
@@ -100,5 +111,6 @@ versions: list[type[VERSION]] = [
     Version5,
     Version6,
     Version7,
-    Version8
+    Version8,
+    Version9
 ]

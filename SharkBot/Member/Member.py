@@ -5,7 +5,7 @@ from typing import Self
 import colorama
 
 from SharkBot import Utils
-from SharkBot.Member import Cooldowns, Permissions, MemberCreatures, MemberTickets
+from SharkBot.Member import Cooldowns, Permissions, MemberCreatures, MemberTickets, MemberShopData
 from . import DataConverter
 
 _MEMBERS_DIRECTORY = "data/live/members"
@@ -23,6 +23,7 @@ class Member:
         self.balance: int = member_data["balance"]
         self.gems: int = member_data["gems"]
         self.power_tokens: int = member_data["power_tokens"]
+        self.shop_data: MemberShopData = MemberShopData(member_data["shop_data"])
         self.cooldowns: Cooldowns = Cooldowns(**member_data["cooldowns"])
         self.permissions: Permissions = Permissions(**member_data["permissions"])
         self.creatures: MemberCreatures = MemberCreatures(member_data["creatures"])
@@ -57,6 +58,7 @@ class Member:
             "balance": self.balance,
             "gems": self.gems,
             "power_tokens": self.power_tokens,
+            "shop_data": self.shop_data.data,
             "cooldowns": self.cooldowns.data,
             "permissions": self.permissions.data,
             "creatures": self.creatures.data,
