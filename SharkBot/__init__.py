@@ -1,4 +1,5 @@
 from . import Utils
+from . import Emojis
 from . import Errors
 from . import Checks
 from . import Rarity
