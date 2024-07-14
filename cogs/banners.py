@@ -77,9 +77,16 @@ class Banners(commands.Cog):
                 rewards.append((roll.creature_id, roll.amount))
         embed.description = "You pulled:"
         for creature_id, amount in rewards:
-            member.creatures.add_power(creature_id, amount)
+            power_tokens = member.creatures.add_power(creature_id, amount)
+            member.power_tokens += power_tokens
+            power_gained = amount - power_tokens
             creature = SharkBot.Creature.get(creature_id)
-            embed.description += f"\n{creature.rarity.emoji} {creature.name} (+{amount} :fire:)"
+            if power_tokens and power_gained:
+                embed.description += f"\n{creature.rarity.emoji} {creature.name} (+{power_gained} :fire:) (+{power_tokens} {SharkBot.Emojis.POWER_TOKEN})"
+            elif power_tokens:
+                embed.description += f"\n{creature.rarity.emoji} {creature.name} (+{power_tokens} {SharkBot.Emojis.POWER_TOKEN})"
+            else:
+                embed.description += f"\n{creature.rarity.emoji} {creature.name} (+{power_gained} :fire:)"
 
         await ctx.send(embed=embed)
 
